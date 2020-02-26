@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Check for reserved branch names
+          command: |
+            if [[ $CIRCLE_BRANCH = latest ]]; then
+              echo "Don't use a branch named 'latest'; these are meaningful tags."
+              exit 1
+            fi
+      - run:
+          name: Login to Docker Hub
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+
+      - run:
+          name: Build containers
+          command: ./build
+
+      - run:
+          name: Test containers
+          command: ./test
+
+      - run:
+          name: Release container
+          command: |
+            shopt -s extglob
+            for tag in $CIRCLE_SHA1 ${CIRCLE_BRANCH//+([^A-Za-z0-9-.])/-}; do
+              # latest
+              docker tag  trussworks/circleci-docker trussworks/circleci-docker:$tag
+              docker push trussworks/circleci-docker:$tag
+            done

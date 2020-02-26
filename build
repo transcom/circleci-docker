@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -x -eu -o pipefail
+
+# bust cache for apt-get daily
+CACHE_APT=$(date '+%Y-%m-%d')
+
+# bust cache for pip when requirements.txt changes
+CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
+
+docker build --build-arg CACHE_APT="$CACHE_APT" \
+             --build-arg CACHE_PIP="$CACHE_PIP" \
+             -t transcom/circleci-docker \
+             -t transcom/circleci-docker:base \
+             .
+
+pushd milmove-app
+CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
+docker build --build-arg CACHE_PIP="$CACHE_PIP" \
+             -t transcom/circleci-docker:milmove-app \
+             .
+popd
+
+pushd milmove-infra
+CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
+docker build --build-arg CACHE_PIP="$CACHE_PIP" \
+             -t transcom/circleci-docker:milmove-infra \
+             .
+popd
+
+pushd milmove-orders
+CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
+docker build --build-arg CACHE_PIP="$CACHE_PIP" \
+             -t transcom/circleci-docker:milmove-orders \
+             .
+popd
