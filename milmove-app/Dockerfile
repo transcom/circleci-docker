@@ -29,6 +29,25 @@ RUN set -ex && cd ~ \
   && chmod 755 go-bindata-linux-amd64 \
   && mv go-bindata-linux-amd64 /usr/local/bin/go-bindata
 
+# install chamber
+ARG CHAMBER_VERSION=2.7.5
+ARG CHAMBER_SHA256SUM=acc9fa8bb3b9548a2494de82241767203a19082f61490b6f8e8c9e79cc1fbf2a
+RUN set -ex && cd ~ \
+  && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
+  && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \
+  && chmod 755 chamber-v${CHAMBER_VERSION}-linux-amd64 \
+  && mv chamber-v${CHAMBER_VERSION}-linux-amd64 /usr/local/bin/chamber
+
+# install swagger
+ARG SWAGGER_VERSION=0.22.0
+ARG SWAGGER_SHA256SUM=86427338df4d71062a89684acda338ce2064c451854fd4487eb354fec280aa57
+RUN set -ex && cd ~ \
+  && curl -sSLO https://github.com/go-swagger/go-swagger/releases/download/v${SWAGGER_VERSION}/swagger_linux_amd64 \
+  && [ $(sha256sum swagger_linux_amd64 | cut -f1 -d' ') = ${SWAGGER_SHA256SUM} ] \
+  && chmod 755 swagger_linux_amd64 \
+  && ls -alh swagger_linux_amd64 \
+  && mv swagger_linux_amd64 /usr/local/bin/swagger
+
 # apt-get all the things
 # Notes:
 # - Add all apt sources first
