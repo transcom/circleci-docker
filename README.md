@@ -43,8 +43,13 @@ In addition to the Base Image this contains:
 
 * [golang](https://golang.org/)
 * [go-bindata](https://github.com/kevinburke/go-bindata)
-* [NodeJS](https://nodejs.org/en/) at version 10.x (required for supporting USWDS)
-* [Yarn](https://yarnpkg.com/)
+* [go-swagger](https://github.com/go-swagger/go-swagger)
+* [chamber](https://github.com/segmentio/chamber)
+* Apt Packages
+  * [NodeJS](https://nodejs.org/en/) at version 10.x (required for supporting USWDS)
+  * [Yarn](https://yarnpkg.com/)
+  * postgresql-client
+  * entr
 
 ### MilMove Infra
 
@@ -58,3 +63,8 @@ In addition to the Base Image this contains:
 In addition to the Base Image this contains:
 
 * [golang](https://golang.org/)
+* [go-swagger](https://github.com/go-swagger/go-swagger)
+* [chamber](https://github.com/segmentio/chamber)
+* Apt Packages
+  * postgresql-client
+  * entr
