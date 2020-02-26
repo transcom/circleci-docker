@@ -10,6 +10,9 @@ USER root
 # may prevent others from experiencing this same problem.
 ENV GOFLAGS=-p=4
 
+# Create GOPATH, needed for swagger
+RUN mkdir -p /home/circleci/go
+
 # install go
 ARG GO_VERSION=1.13.8
 ARG GO_SHA256SUM=0567734d558aef19112f2b2873caa0c600f1b4a5827930eb5a7f35235219e9d8
@@ -38,5 +41,14 @@ RUN set -ex && cd ~ \
   && chmod 755 swagger_linux_amd64 \
   && ls -alh swagger_linux_amd64 \
   && mv swagger_linux_amd64 /usr/local/bin/swagger
+
+# apt-get project dependencies
+RUN set -ex && cd ~ \
+  && apt-get -qq update \
+  && : Install apt packages \
+  && apt-get -qq -y install --no-install-recommends entr postgresql-client \
+  && : Cleanup \
+  && apt-get clean \
+  && rm -vrf /var/lib/apt/lists/*
 
 USER circleci
