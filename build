@@ -14,21 +14,18 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
              .
 
 pushd milmove-app
-CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 docker build --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-app \
              .
 popd
 
 pushd milmove-infra
-CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 docker build --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-infra \
              .
 popd
 
 pushd milmove-orders
-CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 docker build --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-orders \
              .
