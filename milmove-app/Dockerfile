@@ -14,8 +14,8 @@ ENV GOFLAGS=-p=4
 RUN mkdir -p /home/circleci/go
 
 # install go
-ARG GO_VERSION=1.13.8
-ARG GO_SHA256SUM=0567734d558aef19112f2b2873caa0c600f1b4a5827930eb5a7f35235219e9d8
+ARG GO_VERSION=1.14
+ARG GO_SHA256SUM=08df79b46b0adf498ea9f320a0f23d6ec59e9003660b4c9c1ce8e5e2c6f823ca
 RUN set -ex && cd ~ \
   && curl -sSLO https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz \
   && [ $(sha256sum go${GO_VERSION}.linux-amd64.tar.gz | cut -f1 -d' ') = ${GO_SHA256SUM} ] \
@@ -24,8 +24,8 @@ RUN set -ex && cd ~ \
   && rm -v go${GO_VERSION}.linux-amd64.tar.gz
 
 # install go-bindata
-ARG GO_BINDATA_VERSION=3.11.0
-ARG GO_BINDATA_SHA256SUM=fdebe82be2ea9db495c443d38e986cd438d97ec6719b2f69b35001d546da6e46
+ARG GO_BINDATA_VERSION=3.17.0
+ARG GO_BINDATA_SHA256SUM=0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/kevinburke/go-bindata/releases/download/v${GO_BINDATA_VERSION}/go-bindata-linux-amd64 \
   && [ $(sha256sum go-bindata-linux-amd64 | cut -f1 -d' ') = ${GO_BINDATA_SHA256SUM} ] \
