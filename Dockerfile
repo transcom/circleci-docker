@@ -33,6 +33,7 @@ RUN set -ex && cd ~ \
   && gpg --verify awscliv2.sig awscliv2.zip \
   && unzip awscliv2.zip \
   && ./aws/install --update \
+  && aws --version \
   && rm -r awscliv2.zip awscliv2.sig aws
 
 # install pip packages
