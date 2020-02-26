@@ -1,6 +1,6 @@
 # Transcom CircleCI Docker Images
 
-[![Build status](https://img.shields.io/circleci/project/github/transcom/circleci-docker/master.svg)](https://circleci.com/gh/transcom/circleci-docker/tree/master)
+[![CircleCI](https://circleci.com/gh/transcom/circleci-docker/tree/master.svg?style=svg)](https://circleci.com/gh/transcom/circleci-docker/tree/master)
 
 This repository manages the custom-built docker images for use with CircleCI and development. Each image contains the minimum necessary tools to run testing and devleopment.
 
@@ -20,13 +20,13 @@ Each image is specifically tailored.
 
 For the latest stable images:
 
-* `transcom/circleci-docker:latest`
-* `transcom/circleci-docker:base`
-* `transcom/circleci-docker:milmove-app`
-* `transcom/circleci-docker:milmove-infra`
-* `transcom/circleci-docker:milmove-orders`
+* `milmove/circleci-docker:latest`
+* `milmove/circleci-docker:base`
+* `milmove/circleci-docker:milmove-app`
+* `milmove/circleci-docker:milmove-infra`
+* `milmove/circleci-docker:milmove-orders`
 
-For static tags, use tags including the git hash. You can find the hashes in this repo, from the [CircleCI builds page](https://circleci.com/gh/transcom/circleci-docker/tree/master), or from the [Docker Hub tags](https://hub.docker.com/r/transcom/circleci-docker/tags/) page.
+For static tags, use tags including the git hash. You can find the hashes in this repo, from the [CircleCI builds page](https://circleci.com/gh/milmove/circleci-docker/tree/master), or from the [Docker Hub tags](https://hub.docker.com/r/milmove/circleci-docker/tags/) page.
 
 ### Base Image
 

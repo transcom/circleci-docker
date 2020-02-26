@@ -3,7 +3,7 @@ set -eu -o pipefail
 
 for tag in latest milmove-app milmove-infra milmove-orders; do
     echo "* Testing USER is properly set to 'circleci' on '$tag' tagged image"
-    docker run -it transcom/circleci-docker:$tag bash -xc '[[ $(whoami) = circleci ]]'
+    docker run -it milmove/circleci-docker:$tag bash -xc '[[ $(whoami) = circleci ]]'
 done
 
 echo Passed.

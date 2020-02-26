@@ -9,27 +9,27 @@ CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t transcom/circleci-docker \
-             -t transcom/circleci-docker:base \
+             -t milmove/circleci-docker \
+             -t milmove/circleci-docker:base \
              .
 
 pushd milmove-app
 CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 docker build --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t transcom/circleci-docker:milmove-app \
+             -t milmove/circleci-docker:milmove-app \
              .
 popd
 
 pushd milmove-infra
 CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 docker build --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t transcom/circleci-docker:milmove-infra \
+             -t milmove/circleci-docker:milmove-infra \
              .
 popd
 
 pushd milmove-orders
 CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 docker build --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t transcom/circleci-docker:milmove-orders \
+             -t milmove/circleci-docker:milmove-orders \
              .
 popd

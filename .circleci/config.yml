@@ -29,6 +29,6 @@ jobs:
             shopt -s extglob
             for tag in $CIRCLE_SHA1 ${CIRCLE_BRANCH//+([^A-Za-z0-9-.])/-}; do
               # latest
-              docker tag  trussworks/circleci-docker trussworks/circleci-docker:$tag
-              docker push trussworks/circleci-docker:$tag
+              docker tag  milmove/circleci-docker milmove/circleci-docker:$tag
+              docker push milmove/circleci-docker:$tag
             done

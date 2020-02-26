@@ -1,5 +1,5 @@
 # CircleCI docker image to run within
-FROM transcom/circleci-docker:base
+FROM milmove/circleci-docker:base
 # Base image uses "circleci", to avoid using `sudo` run as root user
 USER root
 
