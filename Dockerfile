@@ -32,7 +32,7 @@ RUN set -ex && cd ~ \
   && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip.sig" -o awscliv2.sig \
   && gpg --verify awscliv2.sig awscliv2.zip \
   && unzip awscliv2.zip \
-  && sudo ./aws/install --update \
+  && ./aws/install --update \
   && rm -r awscliv2.zip awscliv2.sig aws
 
 # install pip packages
