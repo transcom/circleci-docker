@@ -10,9 +10,6 @@ USER root
 # may prevent others from experiencing this same problem.
 ENV GOFLAGS=-p=4
 
-# Create GOPATH, needed for swagger
-RUN mkdir -p /home/circleci/go
-
 # install go
 ARG GO_VERSION=1.14
 ARG GO_SHA256SUM=08df79b46b0adf498ea9f320a0f23d6ec59e9003660b4c9c1ce8e5e2c6f823ca
@@ -70,3 +67,6 @@ RUN set -ex && cd ~ \
   && rm -vrf /var/lib/apt/lists/*
 
 USER circleci
+
+# Create GOPATH, needed for swagger, needs to be owned by circleci user
+RUN mkdir -p /home/circleci/go
