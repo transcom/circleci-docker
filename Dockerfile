@@ -24,6 +24,17 @@ RUN set -ex && cd ~ \
   && chmod 755 /usr/local/bin/circleci \
   && rm -vrf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64 circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz
 
+# install awscli2
+COPY sigs/awscli2_pgp.key /tmp/awscli2_pgp.key
+RUN gpg --import /tmp/awscli2_pgp.key
+RUN set -ex && cd ~ \
+  && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip \
+  && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip.sig" -o awscliv2.sig \
+  && gpg --verify awscliv2.sig awscliv2.zip \
+  && unzip awscliv2.zip \
+  && sudo ./aws/install --update \
+  && rm -r awscliv2.zip awscliv2.sig aws
+
 # install pip packages
 ARG CACHE_PIP
 ADD ./requirements.txt /tmp/requirements.txt
