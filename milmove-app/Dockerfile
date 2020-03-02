@@ -39,8 +39,8 @@ RUN set -ex && cd ~ \
   && mv chamber-v${CHAMBER_VERSION}-linux-amd64 /usr/local/bin/chamber
 
 # install swagger
-ARG SWAGGER_VERSION=0.22.0
-ARG SWAGGER_SHA256SUM=86427338df4d71062a89684acda338ce2064c451854fd4487eb354fec280aa57
+ARG SWAGGER_VERSION=0.21.0
+ARG SWAGGER_SHA256SUM=a50dd0e9db98a6bf9d0794882f24c18c57308963a05b41c44db0c5d295164949
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/go-swagger/go-swagger/releases/download/v${SWAGGER_VERSION}/swagger_linux_amd64 \
   && [ $(sha256sum swagger_linux_amd64 | cut -f1 -d' ') = ${SWAGGER_SHA256SUM} ] \
