@@ -25,11 +25,12 @@ RUN set -ex && cd ~ \
   && rm -vrf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64 circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz
 
 # install awscliv2
+ARG AWSCLI_VERSION=2.0.1
 COPY sigs/awscliv2_pgp.key /tmp/awscliv2_pgp.key
 RUN gpg --import /tmp/awscliv2_pgp.key
 RUN set -ex && cd ~ \
-  && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip \
-  && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip.sig" -o awscliv2.sig \
+  && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip" -o awscliv2.zip \
+  && curl -sSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-${AWSCLI_VERSION}.zip.sig" -o awscliv2.sig \
   && gpg --verify awscliv2.sig awscliv2.zip \
   && unzip awscliv2.zip \
   && ./aws/install --update \
