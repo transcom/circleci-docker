@@ -50,7 +50,7 @@ RUN set -ex && cd ~ \
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends apt-transport-https lsb-release \
+  && apt-get -qq -y install --no-install-recommends apt-transport-https lsb-release less \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
