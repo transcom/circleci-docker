@@ -24,7 +24,8 @@ RUN set -ex && cd ~ \
   && chmod 755 /usr/local/bin/circleci \
   && rm -vrf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64 circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz
 
-# install awscliv2
+# install awscliv2, disable default pager (less)
+ENV AWS_PAGER=""
 ARG AWSCLI_VERSION=2.0.1
 COPY sigs/awscliv2_pgp.key /tmp/awscliv2_pgp.key
 RUN gpg --import /tmp/awscliv2_pgp.key
@@ -50,7 +51,7 @@ RUN set -ex && cd ~ \
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends apt-transport-https lsb-release less \
+  && apt-get -qq -y install --no-install-recommends apt-transport-https lsb-release \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
