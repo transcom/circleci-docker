@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -x -eu -o pipefail
 
+#
+# Note on Cache Busting and Build Args: only add `--build-arg` where
+# the dockerfile contains steps that require them.
+#
+
 # bust cache for apt-get daily
 CACHE_APT=$(date '+%Y-%m-%d')
 
@@ -14,19 +19,20 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
              .
 
 pushd milmove-app
-docker build --build-arg CACHE_PIP="$CACHE_PIP" \
+docker build --build-arg CACHE_APT="$CACHE_APT" \
+             --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-app \
              .
 popd
 
 pushd milmove-infra
-docker build --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t milmove/circleci-docker:milmove-infra \
+docker build -t milmove/circleci-docker:milmove-infra \
              .
 popd
 
 pushd milmove-orders
-docker build --build-arg CACHE_PIP="$CACHE_PIP" \
+docker build --build-arg CACHE_APT="$CACHE_APT" \
+             --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-orders \
              .
 popd
