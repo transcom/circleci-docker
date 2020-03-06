@@ -30,8 +30,8 @@ RUN set -ex && cd ~ \
   && mv go-bindata-linux-amd64 /usr/local/bin/go-bindata
 
 # install chamber
-ARG CHAMBER_VERSION=2.7.5
-ARG CHAMBER_SHA256SUM=acc9fa8bb3b9548a2494de82241767203a19082f61490b6f8e8c9e79cc1fbf2a
+ARG CHAMBER_VERSION=2.8.0
+ARG CHAMBER_SHA256SUM=4a47bd9f7fb46ba4a3871efbb60931592defe7c954bd10b4e92323aa30874fc1
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
   && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \
@@ -48,9 +48,9 @@ RUN set -ex && cd ~ \
   && ls -alh swagger_linux_amd64 \
   && mv swagger_linux_amd64 /usr/local/bin/swagger
 
-# apt-get all the things
+# apt-get project dependencies
 # Notes:
-# - Add all apt sources first
+# - When adding apt sources do it before 'apt-get update'
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Add Node 10.x \
