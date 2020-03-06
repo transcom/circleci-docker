@@ -4,8 +4,8 @@ FROM milmove/circleci-docker:base
 USER root
 
 # install terraform
-ARG TERRAFORM_VERSION=0.12.21
-ARG TERRAFORM_SHA256SUM=ca0d0796c79d14ee73a3d45649dab5e531f0768ee98da71b31e423e3278e9aa9
+ARG TERRAFORM_VERSION=0.12.22
+ARG TERRAFORM_SHA256SUM=98faa10a7da2055561339ce67436b37c0c760084e51f219102d87b155be088c5
 RUN set -ex && cd ~ \
   && curl -sSLO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && [ $(sha256sum terraform_${TERRAFORM_VERSION}_linux_amd64.zip | cut -f1 -d ' ') = ${TERRAFORM_SHA256SUM} ] \
