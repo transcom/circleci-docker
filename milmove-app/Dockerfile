@@ -29,15 +29,6 @@ RUN set -ex && cd ~ \
   && chmod 755 go-bindata-linux-amd64 \
   && mv go-bindata-linux-amd64 /usr/local/bin/go-bindata
 
-# install chamber
-ARG CHAMBER_VERSION=2.8.0
-ARG CHAMBER_SHA256SUM=4a47bd9f7fb46ba4a3871efbb60931592defe7c954bd10b4e92323aa30874fc1
-RUN set -ex && cd ~ \
-  && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
-  && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \
-  && chmod 755 chamber-v${CHAMBER_VERSION}-linux-amd64 \
-  && mv chamber-v${CHAMBER_VERSION}-linux-amd64 /usr/local/bin/chamber
-
 # install swagger
 ARG SWAGGER_VERSION=0.21.0
 ARG SWAGGER_SHA256SUM=a50dd0e9db98a6bf9d0794882f24c18c57308963a05b41c44db0c5d295164949
