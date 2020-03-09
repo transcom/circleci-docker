@@ -11,6 +11,7 @@ RUN set -ex && cd ~ \
   && [ $(sha256sum shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz | cut -f1 -d' ') = ${SHELLCHECK_SHA256SUM} ] \
   && tar xvfa shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
   && mv shellcheck-v${SHELLCHECK_VERSION}/shellcheck /usr/local/bin \
+  && chown root:root /usr/local/bin/shellcheck \
   && rm -vrf shellcheck-v${SHELLCHECK_VERSION} shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
 
 # install circleci cli
@@ -22,6 +23,7 @@ RUN set -ex && cd ~ \
   && tar xzf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && mv circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64/circleci /usr/local/bin \
   && chmod 755 /usr/local/bin/circleci \
+  && chown root:root /usr/local/bin/circleci \
   && rm -vrf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64 circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz
 
 # install awscliv2, disable default pager (less)
@@ -43,8 +45,13 @@ ARG CHAMBER_SHA256SUM=4a47bd9f7fb46ba4a3871efbb60931592defe7c954bd10b4e92323aa30
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
   && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \
-  && chmod 755 chamber-v${CHAMBER_VERSION}-linux-amd64 \
-  && mv chamber-v${CHAMBER_VERSION}-linux-amd64 /usr/local/bin/chamber
+  && mv chamber-v${CHAMBER_VERSION}-linux-amd64 /usr/local/bin/chamber \
+  && chmod 755 /usr/local/bin/chamber
+
+# Install scripts
+COPY scripts/do-exclusively /usr/local/bin/do-exclusively
+RUN chmod 755 /usr/local/bin/do-exclusively \
+  && chown root:root /usr/local/bin/do-exclusively
 
 # install pip packages
 ARG CACHE_PIP
