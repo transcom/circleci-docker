@@ -1,10 +1,83 @@
 #!/bin/bash
-set -eu -o pipefail
+
+#
+# A test script to check the docker file
+#
+
+set -exu -o pipefail
+
+function test_latest() {
+  tag=latest
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" shellcheck --version
+  docker run -it "milmove/circleci-docker:${tag}" circleci version
+  docker run -it "milmove/circleci-docker:${tag}" aws --version
+  docker run -it "milmove/circleci-docker:${tag}" pre-commit --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_app() {
+  tag=milmove-app
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" go version
+  docker run -it "milmove/circleci-docker:${tag}" go-bindata --version
+  docker run -it "milmove/circleci-docker:${tag}" chamber version
+  docker run -it "milmove/circleci-docker:${tag}" swagger version
+  docker run -it "milmove/circleci-docker:${tag}" node --version
+  docker run -it "milmove/circleci-docker:${tag}" yarn --version
+  docker run -it "milmove/circleci-docker:${tag}" which entr
+  docker run -it "milmove/circleci-docker:${tag}" psql --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_infra() {
+  tag=milmove-infra
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" terraform --version
+  docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_orders() {
+  tag=milmove-orders
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" go version
+  docker run -it "milmove/circleci-docker:${tag}" chamber version
+  docker run -it "milmove/circleci-docker:${tag}" swagger version
+  docker run -it "milmove/circleci-docker:${tag}" which entr
+  docker run -it "milmove/circleci-docker:${tag}" psql --version
+
+  echo "Passed ${tag}"
+}
 
 for tag in latest milmove-app milmove-infra milmove-orders; do
-    echo "* Testing USER is properly set to 'circleci' on '$tag' tagged image"
-    docker run -it milmove/circleci-docker:$tag bash -xc '[[ $(whoami) = circleci ]]'
+  echo
+  echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
+  docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
+
+  case ${tag} in
+    latest)
+      test_latest
+    ;;
+    milmove-app)
+      test_milmove_app
+    ;;
+    milmove-infra)
+      test_milmove_infra
+    ;;
+    milmove-orders)
+      test_milmove_orders
+    ;;
+esac
+
 done
 
-echo Passed.
+echo "Passed."
 exit 0
