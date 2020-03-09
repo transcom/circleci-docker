@@ -13,6 +13,7 @@ function test_latest() {
   docker run -it "milmove/circleci-docker:${tag}" shellcheck --version
   docker run -it "milmove/circleci-docker:${tag}" circleci version
   docker run -it "milmove/circleci-docker:${tag}" aws --version
+  docker run -it "milmove/circleci-docker:${tag}" chamber version
   docker run -it "milmove/circleci-docker:${tag}" pre-commit --version
 
   echo "Passed ${tag}"
@@ -24,7 +25,6 @@ function test_milmove_app() {
 
   docker run -it "milmove/circleci-docker:${tag}" go version
   docker run -it "milmove/circleci-docker:${tag}" go-bindata --version
-  docker run -it "milmove/circleci-docker:${tag}" chamber version
   docker run -it "milmove/circleci-docker:${tag}" swagger version
   docker run -it "milmove/circleci-docker:${tag}" node --version
   docker run -it "milmove/circleci-docker:${tag}" yarn --version
@@ -49,7 +49,6 @@ function test_milmove_orders() {
   echo "Testing ${tag} Dockerfile"
 
   docker run -it "milmove/circleci-docker:${tag}" go version
-  docker run -it "milmove/circleci-docker:${tag}" chamber version
   docker run -it "milmove/circleci-docker:${tag}" swagger version
   docker run -it "milmove/circleci-docker:${tag}" which entr
   docker run -it "milmove/circleci-docker:${tag}" psql --version
