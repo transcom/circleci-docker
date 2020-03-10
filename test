@@ -34,6 +34,17 @@ function test_milmove_app() {
   echo "Passed ${tag}"
 }
 
+function test_milmove_app_browsers() {
+  tag=milmove-app-browsers
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" node --version
+  docker run -it "milmove/circleci-docker:${tag}" yarn --version
+  docker run -it "milmove/circleci-docker:${tag}" google-chrome --version
+
+  echo "Passed ${tag}"
+}
+
 function test_milmove_infra() {
   tag=milmove-infra
   echo "Testing ${tag} Dockerfile"
@@ -67,6 +78,9 @@ for tag in latest milmove-app milmove-infra milmove-orders; do
     ;;
     milmove-app)
       test_milmove_app
+    ;;
+    milmove-app-browsers)
+      test_milmove_app_browsers
     ;;
     milmove-infra)
       test_milmove_infra
