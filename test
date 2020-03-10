@@ -38,9 +38,8 @@ function test_milmove_app_browsers() {
   tag=milmove-app-browsers
   echo "Testing ${tag} Dockerfile"
 
-  docker run -it "milmove/circleci-docker:${tag}" node --version
-  docker run -it "milmove/circleci-docker:${tag}" yarn --version
   docker run -it "milmove/circleci-docker:${tag}" google-chrome --version
+  docker run -it "milmove/circleci-docker:${tag}" chromedriver --version
 
   echo "Passed ${tag}"
 }
