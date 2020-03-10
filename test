@@ -66,7 +66,7 @@ function test_milmove_orders() {
   echo "Passed ${tag}"
 }
 
-for tag in latest milmove-app milmove-infra milmove-orders; do
+for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders; do
   echo
   echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
   docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
