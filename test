@@ -34,6 +34,16 @@ function test_milmove_app() {
   echo "Passed ${tag}"
 }
 
+function test_milmove_app_browsers() {
+  tag=milmove-app-browsers
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" google-chrome --version
+  docker run -it "milmove/circleci-docker:${tag}" chromedriver --version
+
+  echo "Passed ${tag}"
+}
+
 function test_milmove_infra() {
   tag=milmove-infra
   echo "Testing ${tag} Dockerfile"
@@ -56,7 +66,7 @@ function test_milmove_orders() {
   echo "Passed ${tag}"
 }
 
-for tag in latest milmove-app milmove-infra milmove-orders; do
+for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders; do
   echo
   echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
   docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
@@ -67,6 +77,9 @@ for tag in latest milmove-app milmove-infra milmove-orders; do
     ;;
     milmove-app)
       test_milmove_app
+    ;;
+    milmove-app-browsers)
+      test_milmove_app_browsers
     ;;
     milmove-infra)
       test_milmove_infra

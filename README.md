@@ -23,6 +23,7 @@ For the latest stable images:
 * `milmove/circleci-docker:latest`
 * `milmove/circleci-docker:base`
 * `milmove/circleci-docker:milmove-app`
+* `milmove/circleci-docker:milmove-app-browsers`
 * `milmove/circleci-docker:milmove-infra`
 * `milmove/circleci-docker:milmove-orders`
 
@@ -50,6 +51,12 @@ In addition to the Base Image this contains:
   * [Yarn](https://yarnpkg.com/)
   * postgresql-client
   * entr
+
+### MilMove App Browsers
+
+In addition to the MilMove App Image this contains:
+
+* [Chrome](https://www.google.com/chrome/)
 
 ### MilMove Infra
 
