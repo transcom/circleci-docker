@@ -21,8 +21,8 @@ RUN set -ex && cd ~ \
   && rm -v go${GO_VERSION}.linux-amd64.tar.gz
 
 # install go-bindata
-ARG GO_BINDATA_VERSION=3.18.0
-ARG GO_BINDATA_SHA256SUM=9502a4ed4c2670bb913253acbfacc62d114846eddcb78334f9383f663a38fa5b
+ARG GO_BINDATA_VERSION=3.19.0
+ARG GO_BINDATA_SHA256SUM=54ca3cd7a0368a2357ffe10c1f0028480b4d6cf91e397a75300e8658c7240988
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/kevinburke/go-bindata/releases/download/v${GO_BINDATA_VERSION}/go-bindata-linux-amd64 \
   && [ $(sha256sum go-bindata-linux-amd64 | cut -f1 -d' ') = ${GO_BINDATA_SHA256SUM} ] \
