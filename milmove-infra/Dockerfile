@@ -13,8 +13,8 @@ RUN set -ex && cd ~ \
   && rm -vf terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 # install terraform-docs
-ARG TERRAFORM_DOCS_VERSION=0.8.2
-ARG TERRAFORM_DOCS_SHA256SUM=d572e23425dd914e43933761f85dbcde2d7d473d6b960e12b191f3076b36caa0
+ARG TERRAFORM_DOCS_VERSION=0.9.0
+ARG TERRAFORM_DOCS_SHA256SUM=3a6b152c19a18cd010b48a56bc1c488bbe0e64150369c7eb44c035d93645874d
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 \
   && [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 | cut -f1 -d' ') = ${TERRAFORM_DOCS_SHA256SUM} ] \
