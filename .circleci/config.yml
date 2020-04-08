@@ -17,11 +17,11 @@ jobs:
 
       - run:
           name: Build containers
-          command: ./build
+          command: make build
 
       - run:
           name: Test containers
-          command: ./test
+          command: make test
 
       - run:
           name: Release container
