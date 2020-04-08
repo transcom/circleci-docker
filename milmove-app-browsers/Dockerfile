@@ -28,6 +28,7 @@ RUN set -ex && cd ~ \
     libxi6 \
     libxrandr2 \
     libxtst6 \
+    libgbm1 \
     xdg-utils \
   && : Cleanup \
   && apt-get clean \
