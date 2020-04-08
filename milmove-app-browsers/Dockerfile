@@ -20,6 +20,7 @@ RUN set -ex && cd ~ \
     libatspi2.0-0 \
     libcups2 \
     libdbus-1-3 \
+    libgbm1 \
     libgtk-3-0 \
     libnspr4 \
     libnss3 \
@@ -34,11 +35,12 @@ RUN set -ex && cd ~ \
   && rm -vrf /var/lib/apt/lists/*
 
 # install chrome
+# Use these instructions: https://github.com/CircleCI-Public/circleci-dockerfiles/blob/master/node/images/10.19.0-buster/browsers/Dockerfile
 
 RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-  && (sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb || sudo apt-get -fy install)  \
+  && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)  \
   && rm -rf /tmp/google-chrome-stable_current_amd64.deb \
-  && sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' \
+  && sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' \
     "/opt/google/chrome/google-chrome" \
   && google-chrome --version
 
@@ -49,15 +51,15 @@ RUN CHROME_VERSION="$(google-chrome --version)" \
   && cd /tmp \
   && unzip chromedriver_linux64.zip \
   && rm -rf chromedriver_linux64.zip \
-  && sudo mv chromedriver /usr/local/bin/chromedriver \
-  && sudo chmod +x /usr/local/bin/chromedriver \
+  && mv chromedriver /usr/local/bin/chromedriver \
+  && chmod +x /usr/local/bin/chromedriver \
   && chromedriver --version
 
 # start xvfb automatically to avoid needing to express in circle.yml
 ENV DISPLAY :99
 RUN printf '#!/bin/sh\nXvfb :99 -screen 0 1280x1024x24 &\nexec "$@"\n' > /tmp/entrypoint \
   && chmod +x /tmp/entrypoint \
-  && sudo mv /tmp/entrypoint /docker-entrypoint.sh
+  && mv /tmp/entrypoint /docker-entrypoint.sh
 
 #ENV CHROME_PATH=/opt/google/chrome
 
