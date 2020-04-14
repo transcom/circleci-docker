@@ -4,10 +4,10 @@ FROM circleci/python:3.8-buster
 USER root
 
 # install shellcheck
-ARG SHELLCHECK_VERSION=0.7.0
-ARG SHELLCHECK_SHA256SUM=39c501aaca6aae3f3c7fc125b3c3af779ddbe4e67e4ebdc44c2ae5cba76c847f
+ARG SHELLCHECK_VERSION=0.7.1
+ARG SHELLCHECK_SHA256SUM=64f17152d96d7ec261ad3086ed42d18232fcb65148b44571b564d688269d36c8
 RUN set -ex && cd ~ \
-  && curl -sSLO https://shellcheck.storage.googleapis.com/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
+  && curl -sSLO https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
   && [ $(sha256sum shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz | cut -f1 -d' ') = ${SHELLCHECK_SHA256SUM} ] \
   && tar xvfa shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
   && mv shellcheck-v${SHELLCHECK_VERSION}/shellcheck /usr/local/bin \
@@ -15,8 +15,8 @@ RUN set -ex && cd ~ \
   && rm -vrf shellcheck-v${SHELLCHECK_VERSION} shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
 
 # install circleci cli
-ARG CIRCLECI_CLI_VERSION=0.1.6772
-ARG CIRCLECI_CLI_SHA256SUM=45f1e5a1a53e0805197c332663a75c4a4925dc1b1518aac45286bff27e331137
+ARG CIRCLECI_CLI_VERSION=0.1.6949
+ARG CIRCLECI_CLI_SHA256SUM=9032cab5ee1b1a77bf7eabca972c816fe624acc615bc462b696a206f9da9aa61
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/CircleCI-Public/circleci-cli/releases/download/v${CIRCLECI_CLI_VERSION}/circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && [ $(sha256sum circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz | cut -f1 -d' ') = ${CIRCLECI_CLI_SHA256SUM} ] \
@@ -40,8 +40,8 @@ RUN set -ex && cd ~ \
   && aws --version \
   && rm -r awscliv2.zip awscliv2.sig aws
 
-ARG CHAMBER_VERSION=2.8.0
-ARG CHAMBER_SHA256SUM=4a47bd9f7fb46ba4a3871efbb60931592defe7c954bd10b4e92323aa30874fc1
+ARG CHAMBER_VERSION=2.8.1
+ARG CHAMBER_SHA256SUM=62c9bab24cddf8489132ec83362082ab9c5b15af41bccd4b938ba47abe31f7d6
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
   && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \

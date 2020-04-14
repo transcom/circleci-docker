@@ -1,0 +1,119 @@
+#!/bin/bash
+
+#
+# A test script to check the docker file
+#
+
+set -eu -o pipefail
+
+function compare_version () {
+  tag=$1
+  bin=$2
+  sub=$3
+
+  # Get the version from inside docker
+  dock_v=$(docker run -it "milmove/circleci-docker:${tag}" "${bin}" "${sub}" | perl -ne '~ s/\s+//g;; print')
+
+  # Get the version from macOS
+  brew upgrade "${bin}"
+  brew_v=$("${bin}" "${sub}" | perl -ne '~ s/\s+//g;; print')
+
+  # Compare them and exit
+  echo "Comparing ${bin} versions"
+  if [ "${dock_v}" != "${brew_v}" ]; then
+    echo "----------------------------------------"
+    echo "Version mismatch for ${bin}"
+    echo "----------------------------------------"
+    echo "Docker:"
+    echo "${dock_v}"
+    echo "----------------------------------------"
+    echo "Brew:"
+    echo "${brew_v}"
+    echo "----------------------------------------"
+    exit 1
+  fi
+}
+
+function test_latest() {
+  tag=latest
+  echo "Testing ${tag} Dockerfile"
+
+  compare_version "${tag}" shellcheck --version
+  compare_version "${tag}" circleci version
+  # docker run -it "milmove/circleci-docker:${tag}" aws --version
+  compare_version "${tag}" chamber version
+  compare_version "${tag}" pre-commit --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_app() {
+  tag=milmove-app
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" go version
+  docker run -it "milmove/circleci-docker:${tag}" go-bindata --version
+  docker run -it "milmove/circleci-docker:${tag}" swagger version
+  docker run -it "milmove/circleci-docker:${tag}" node --version
+  docker run -it "milmove/circleci-docker:${tag}" yarn --version
+  docker run -it "milmove/circleci-docker:${tag}" which entr
+  docker run -it "milmove/circleci-docker:${tag}" psql --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_app_browsers() {
+  tag=milmove-app-browsers
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" google-chrome --version
+  docker run -it "milmove/circleci-docker:${tag}" chromedriver --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_infra() {
+  tag=milmove-infra
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" terraform --version
+  docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
+
+  echo "Passed ${tag}"
+}
+
+function test_milmove_orders() {
+  tag=milmove-orders
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" go version
+  docker run -it "milmove/circleci-docker:${tag}" swagger version
+  docker run -it "milmove/circleci-docker:${tag}" which entr
+  docker run -it "milmove/circleci-docker:${tag}" psql --version
+
+  echo "Passed ${tag}"
+}
+
+for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders; do
+  case ${tag} in
+    latest)
+      test_latest
+    ;;
+    milmove-app)
+      test_milmove_app
+    ;;
+    milmove-app-browsers)
+      test_milmove_app_browsers
+    ;;
+    milmove-infra)
+      test_milmove_infra
+    ;;
+    milmove-orders)
+      test_milmove_orders
+    ;;
+esac
+
+done
+
+echo "Passed."
+exit 0
