@@ -75,3 +75,16 @@ In addition to the Base Image this contains:
 * Apt Packages
   * postgresql-client
   * entr
+
+## Upgrading
+
+The aim of this repository is to always use the latest versions of project dependencies. The fastest way to check
+for the latest versions is to use `brew upgrade` and compare the versions between your local macOS machine and the
+docker containers. This is a bit tricky and involves manual work. Generally run these two scripts:
+
+```sh
+./scripts/brew-upgrade
+./scripts/find-updates
+```
+
+Scan the output for mismatched version numbers and then update the appropriate `Dockerfile`s.
