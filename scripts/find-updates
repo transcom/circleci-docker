@@ -1,0 +1,111 @@
+#!/bin/bash
+
+#
+# A test script to check the docker file against locally installed brew packages
+#
+# This script is not intended to be a test and always exits with code 0.
+# Use this script in tandem with the `brew-upgrade` script. First upgrade brew deps
+# and then run this script. Visually scan for mismatched versions. Update Dockerfiles where appropriate.
+#
+
+set -eu -o pipefail
+
+function compare_version () {
+  tag=$1
+  cmd=("${@:2}")
+
+  # Get the version from inside docker
+  dock_v=$(docker run -it "milmove/circleci-docker:${tag}" "${cmd[@]}" | perl -ne '~ s/[^\S\n]+$//g;; print')
+
+  # Get the version from macOS
+  brew_v=$("${cmd[@]}" | perl -ne '~ s/[^\S\n]+$//g;; print')
+
+  # Compare them and exit
+  echo "Comparing versions for ${cmd[0]}"
+  if [ "${dock_v}" != "${brew_v}" ]; then
+    echo
+    echo "========================================"
+    echo "Version mismatch for ${cmd[0]}"
+    echo "----------------------------------------"
+    echo "Docker:"
+    echo "${dock_v}"
+    echo "----------------------------------------"
+    echo "Brew:"
+    echo "${brew_v}"
+    echo "========================================"
+    echo
+  fi
+}
+
+function test_latest() {
+  tag=latest
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" shellcheck --version
+  compare_version "${tag}" circleci version
+  compare_version "${tag}" aws --version
+  compare_version "${tag}" chamber version
+  compare_version "${tag}" pre-commit --version
+}
+
+function test_milmove_app() {
+  tag=milmove-app
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" go version
+  compare_version "${tag}" go-bindata --version
+  compare_version "${tag}" node --version
+  compare_version "${tag}" yarn --version
+}
+
+function test_milmove_app_browsers() {
+  tag=milmove-app-browsers
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  # docker run -it "milmove/circleci-docker:${tag}" google-chrome --version
+  # docker run -it "milmove/circleci-docker:${tag}" chromedriver --version
+}
+
+function test_milmove_infra() {
+  tag=milmove-infra
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" terraform --version
+  compare_version "${tag}" terraform-docs --version
+}
+
+function test_milmove_orders() {
+  tag=milmove-orders
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" go version
+}
+
+for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders; do
+  case ${tag} in
+    latest)
+      test_latest
+    ;;
+    milmove-app)
+      test_milmove_app
+    ;;
+    milmove-app-browsers)
+      test_milmove_app_browsers
+    ;;
+    milmove-infra)
+      test_milmove_infra
+    ;;
+    milmove-orders)
+      test_milmove_orders
+    ;;
+esac
+
+done
+
+echo "Passed."
+exit 0
