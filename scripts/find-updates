@@ -15,7 +15,7 @@ function compare_version () {
   cmd=("${@:2}")
 
   # Get the version from inside docker
-  dock_v=$(docker run -it "milmove/circleci-docker:${tag}" "${cmd[@]}" | perl -ne '~ s/[^\S\n]+$//g;; print')
+  dock_v=$(docker run -it --rm "milmove/circleci-docker:${tag}" "${cmd[@]}" | perl -ne '~ s/[^\S\n]+$//g;; print')
 
   # Get the version from macOS
   brew_v=$("${cmd[@]}" | perl -ne '~ s/[^\S\n]+$//g;; print')
