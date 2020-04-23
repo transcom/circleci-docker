@@ -50,6 +50,7 @@ function test_milmove_infra() {
 
   docker run -it "milmove/circleci-docker:${tag}" terraform --version
   docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
+  docker run -it "milmove/circleci-docker:${tag}" tfsec --version
 
   echo "Passed ${tag}"
 }
