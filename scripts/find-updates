@@ -76,6 +76,7 @@ function test_milmove_infra() {
 
   compare_version "${tag}" terraform --version
   compare_version "${tag}" terraform-docs --version
+  compare_version "${tag}" tfsec --version
 }
 
 function test_milmove_orders() {
@@ -107,5 +108,4 @@ esac
 
 done
 
-echo "Passed."
 exit 0
