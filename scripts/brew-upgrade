@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#
+# A script to upgrade all brew formula related to docker files
+#
+
+set -exu -o pipefail
+
+brew upgrade \
+    awscli \
+    chamber \
+    circleci \
+    go \
+    go-bindata \
+    node@10 \
+    pre-commit \
+    shellcheck \
+    terraform-docs \
+    tfenv \
+    yarn
+
+tfenv install latest
+tfenv use latest
