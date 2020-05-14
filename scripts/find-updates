@@ -14,6 +14,11 @@ function compare_version () {
   tag=$1
   cmd=("${@:2}")
 
+  if [[ $(docker images -q "milmove/circleci-docker:${tag}" 2> /dev/null) == "" ]]; then
+    echo "Image milmove/circleci-docker:${tag} does not exist!"
+    exit 1
+  fi
+
   # Get the version from inside docker
   dock_v=$(docker run -it --rm "milmove/circleci-docker:${tag}" "${cmd[@]}" | perl -ne '~ s/[^\S\n]+$//g;; print')
 
