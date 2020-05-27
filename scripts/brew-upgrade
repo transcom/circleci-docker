@@ -12,7 +12,7 @@ brew upgrade \
     circleci \
     go \
     go-bindata \
-    node@10 \
+    nodenv \
     pre-commit \
     shellcheck \
     terraform-docs \
