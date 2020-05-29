@@ -13,6 +13,7 @@ brew upgrade \
     go \
     go-bindata \
     nodenv \
+    node-build \
     pre-commit \
     shellcheck \
     terraform-docs \
