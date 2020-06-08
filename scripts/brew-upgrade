@@ -12,7 +12,8 @@ brew upgrade \
     circleci \
     go \
     go-bindata \
-    node@10 \
+    nodenv \
+    node-build \
     pre-commit \
     shellcheck \
     terraform-docs \
@@ -20,5 +21,7 @@ brew upgrade \
     tfenv \
     yarn
 
+nodenv install 12.16.3 --skip-existing
+nodenv local 12.16.3
 tfenv install latest
 tfenv use latest
