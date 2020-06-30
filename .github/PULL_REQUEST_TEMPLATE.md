@@ -10,6 +10,7 @@ for clarity).
 - [AWS CLI](https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst)
 - [chamber](https://github.com/segmentio/chamber/releases)
 - [CircleCI](https://github.com/CircleCI-Public/circleci-cli/releases)
+- [find-guardduty-user](https://github.com/trussworks/find-guardduty-user/releases)
 - [golang](https://golang.org/doc/devel/release.html)
 - [Google Chrome](https://chromereleases.googleblog.com/)
 - [shellcheck](https://github.com/koalaman/shellcheck/releases)
