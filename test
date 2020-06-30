@@ -48,6 +48,7 @@ function test_milmove_infra() {
   tag=milmove-infra
   echo "Testing ${tag} Dockerfile"
 
+  docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
   docker run -it "milmove/circleci-docker:${tag}" terraform --version
   docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
   docker run -it "milmove/circleci-docker:${tag}" tfsec --version
