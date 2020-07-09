@@ -87,13 +87,19 @@ docker containers. This is a bit tricky and involves manual work. Generally run 
 ./scripts/find-updates
 ```
 
-`./scripts/find-updates` assumes that `milmove/circleci-docker:latest` container exists locally so you may need to download the image.
+`./scripts/find-updates` assumes that the above containers exists locally so you may need to download the images.
 
 ```sh
 docker pull milmove/circleci-docker:latest
+docker pull milmove/circleci-docker:base
+docker pull milmove/circleci-docker:milmove-app
+docker pull milmove/circleci-docker:milmove-app-browsers
+docker pull milmove/circleci-docker:milmove-infra
+docker pull milmove/circleci-docker:milmove-orders
+
 ```
 
-This should build cleanly locally, but an update image needs to exist to verify you have all the things.
+This should build cleanly locally, but an updated image needs to exist to verify you have all the things.
 
 ```sh
 make build
