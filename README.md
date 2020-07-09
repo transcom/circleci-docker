@@ -87,4 +87,16 @@ docker containers. This is a bit tricky and involves manual work. Generally run 
 ./scripts/find-updates
 ```
 
+`./scripts/find-updates` assumes that `milmove/circleci-docker:latest` container exists locally so you may need to download the image.
+
+```sh
+docker pull milmove/circleci-docker:latest
+```
+
+This should build cleanly locally, but an update image needs to exist to verify you have all the things.
+
+```sh
+make build
+```
+
 Scan the output for mismatched version numbers and then update the appropriate `Dockerfile`s.

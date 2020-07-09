@@ -28,7 +28,7 @@ RUN set -ex && cd ~ \
 
 # install awscliv2, disable default pager (less)
 ENV AWS_PAGER=""
-ARG AWSCLI_VERSION=2.0.19
+ARG AWSCLI_VERSION=2.0.29
 COPY sigs/awscliv2_pgp.key /tmp/awscliv2_pgp.key
 RUN gpg --import /tmp/awscliv2_pgp.key
 RUN set -ex && cd ~ \
@@ -40,8 +40,8 @@ RUN set -ex && cd ~ \
   && aws --version \
   && rm -r awscliv2.zip awscliv2.sig aws
 
-ARG CHAMBER_VERSION=2.8.1
-ARG CHAMBER_SHA256SUM=62c9bab24cddf8489132ec83362082ab9c5b15af41bccd4b938ba47abe31f7d6
+ARG CHAMBER_VERSION=2.8.2
+ARG CHAMBER_SHA256SUM=bd2eec2ad7f7ed368983a76fff861cf894b12a28d6b0e9fc4cd91c2537135fc5
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
   && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \
