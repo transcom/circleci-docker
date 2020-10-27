@@ -30,8 +30,8 @@ RUN set -ex && cd ~ \
   && mv go-bindata-linux-amd64 /usr/local/bin/go-bindata
 
 # install swagger
-ARG SWAGGER_VERSION=0.21.0
-ARG SWAGGER_SHA256SUM=a50dd0e9db98a6bf9d0794882f24c18c57308963a05b41c44db0c5d295164949
+ARG SWAGGER_VERSION=0.24.0
+ARG SWAGGER_SHA256SUM=50698cc3524e46c805a0a909bb417eaf84cc456dfb162dc2b4e5c6b0d7f6a508
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/go-swagger/go-swagger/releases/download/v${SWAGGER_VERSION}/swagger_linux_amd64 \
   && [ $(sha256sum swagger_linux_amd64 | cut -f1 -d' ') = ${SWAGGER_SHA256SUM} ] \
