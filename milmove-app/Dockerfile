@@ -11,8 +11,8 @@ USER root
 ENV GOFLAGS=-p=4
 
 # install go
-ARG GO_VERSION=1.15.2
-ARG GO_SHA256SUM=b49fda1ca29a1946d6bb2a5a6982cf07ccd2aba849289508ee0f9918f6bb4552
+ARG GO_VERSION=1.15.4
+ARG GO_SHA256SUM=eb61005f0b932c93b424a3a4eaa67d72196c79129d9a3ea8578047683e2c80d5
 RUN set -ex && cd ~ \
   && curl -sSLO https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && [ $(sha256sum go${GO_VERSION}.linux-amd64.tar.gz | cut -f1 -d' ') = ${GO_SHA256SUM} ] \
@@ -21,8 +21,8 @@ RUN set -ex && cd ~ \
   && rm -v go${GO_VERSION}.linux-amd64.tar.gz
 
 # install go-bindata
-ARG GO_BINDATA_VERSION=3.19.0
-ARG GO_BINDATA_SHA256SUM=54ca3cd7a0368a2357ffe10c1f0028480b4d6cf91e397a75300e8658c7240988
+ARG GO_BINDATA_VERSION=3.22.0
+ARG GO_BINDATA_SHA256SUM=e5d620fef845756d4223969f847de95601e1091b577a24d7e8bf2a3edd80a804
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/kevinburke/go-bindata/releases/download/v${GO_BINDATA_VERSION}/go-bindata-linux-amd64 \
   && [ $(sha256sum go-bindata-linux-amd64 | cut -f1 -d' ') = ${GO_BINDATA_SHA256SUM} ] \
