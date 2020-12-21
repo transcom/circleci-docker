@@ -15,6 +15,18 @@ update_configs:
     default_labels:
       - "dependencies"
   - package_manager: "docker"
+    directory: "/milmove-app-browsers"
+    update_schedule: "weekly"
+    # Apply dependencies label to PRs
+    default_labels:
+      - "dependencies"
+  - package_manager: "docker"
+    directory: "/milmove-cypress"
+    update_schedule: "weekly"
+    # Apply dependencies label to PRs
+    default_labels:
+      - "dependencies"
+  - package_manager: "docker"
     directory: "/milmove-infra"
     update_schedule: "weekly"
     # Apply dependencies label to PRs
@@ -22,6 +34,14 @@ update_configs:
       - "dependencies"
   - package_manager: "docker"
     directory: "/milmove-orders"
+    update_schedule: "weekly"
+    # Apply dependencies label to PRs
+    default_labels:
+      - "dependencies"
+
+  # Keep cypress javascript deps up-to-date also
+  - package_manager: "javascript"
+    directory: "/milmove-cypress"
     update_schedule: "weekly"
     # Apply dependencies label to PRs
     default_labels:
