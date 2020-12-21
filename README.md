@@ -24,6 +24,7 @@ For the latest stable images:
 * `milmove/circleci-docker:base`
 * `milmove/circleci-docker:milmove-app`
 * `milmove/circleci-docker:milmove-app-browsers`
+* `milmove/circleci-docker:milmove-cypress`
 * `milmove/circleci-docker:milmove-infra`
 * `milmove/circleci-docker:milmove-orders`
 
@@ -94,6 +95,7 @@ docker pull milmove/circleci-docker:latest
 docker pull milmove/circleci-docker:base
 docker pull milmove/circleci-docker:milmove-app
 docker pull milmove/circleci-docker:milmove-app-browsers
+docker pull milmove/circleci-docker:milmove-cypress
 docker pull milmove/circleci-docker:milmove-infra
 docker pull milmove/circleci-docker:milmove-orders
 
