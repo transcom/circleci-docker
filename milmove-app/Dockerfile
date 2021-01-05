@@ -39,6 +39,15 @@ RUN set -ex && cd ~ \
   && ls -alh swagger_linux_amd64 \
   && mv swagger_linux_amd64 /usr/local/bin/swagger
 
+ARG ECS_SERVICE_LOGS_VERSION=0.3.0
+ARG ECS_SERVICE_LOGS_SHA256SUM=2803177477bb917a19fc89f36f4972af740f80d35380cbe2c97345bb6d109f8e
+RUN set -ex && cd ~ \
+  && curl -sSLO https://github.com/trussworks/find-guardduty-user/releases/download/v${ECS_SERVICE_LOGS_VERSION}/ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz \
+  && [ $(sha256sum ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz | cut -f1 -d' ') = ${ECS_SERVICE_LOGS_SHA256SUM} ] \
+  && tar -C /usr/local/bin -xzf ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz \
+  && rm -v ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz
+
+
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
