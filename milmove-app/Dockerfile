@@ -39,11 +39,22 @@ RUN set -ex && cd ~ \
   && ls -alh swagger_linux_amd64 \
   && mv swagger_linux_amd64 /usr/local/bin/swagger
 
+ARG ECS_SERVICE_LOGS_VERSION=0.3.0
+ARG ECS_SERVICE_LOGS_SHA256SUM=2803177477bb917a19fc89f36f4972af740f80d35380cbe2c97345bb6d109f8e
+RUN set -ex && cd ~ \
+  && curl -sSLO https://github.com/trussworks/ecs-service-logs/releases/download/v${ECS_SERVICE_LOGS_VERSION}/ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz \
+  && [ $(sha256sum ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz | cut -f1 -d' ') = ${ECS_SERVICE_LOGS_SHA256SUM} ] \
+  && tar -C /usr/local/bin -xzf ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz \
+  && rm -v ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz
+
+
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
 ARG CACHE_APT
 RUN set -ex && cd ~ \
+  && : Remove existing node \
+  && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
   && : Add Node 12.x \
   && curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
   && echo "deb https://deb.nodesource.com/node_12.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/nodesource.list \
