@@ -53,6 +53,8 @@ RUN set -ex && cd ~ \
 # - When adding apt sources do it before 'apt-get update'
 ARG CACHE_APT
 RUN set -ex && cd ~ \
+  && : Remove existing node \
+  && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
   && : Add Node 12.x \
   && curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
   && echo "deb https://deb.nodesource.com/node_12.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/nodesource.list \
