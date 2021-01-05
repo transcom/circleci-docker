@@ -11,6 +11,7 @@ for clarity).
 - [chamber](https://github.com/segmentio/chamber/releases)
 - [cypress](https://www.cypress.io/)
 - [CircleCI](https://github.com/CircleCI-Public/circleci-cli/releases)
+- [ecs-service-logs](https://github.com/trussworks/ecs-service-logs/releases)
 - [find-guardduty-user](https://github.com/trussworks/find-guardduty-user/releases)
 - [golang](https://golang.org/doc/devel/release.html)
 - [Google Chrome](https://chromereleases.googleblog.com/)
