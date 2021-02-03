@@ -33,6 +33,12 @@ update_configs:
     default_labels:
       - "dependencies"
   - package_manager: "docker"
+    directory: "/milmove-infra-tf13"
+    update_schedule: "weekly"
+    # Apply dependencies label to PRs
+    default_labels:
+      - "dependencies"
+  - package_manager: "docker"
     directory: "/milmove-orders"
     update_schedule: "weekly"
     # Apply dependencies label to PRs
