@@ -84,6 +84,16 @@ function test_milmove_infra() {
   compare_version "${tag}" tfsec --version
 }
 
+function test_milmove_infra_tf13() {
+  tag=milmove-infra-tf13
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" terraform --version
+  compare_version "${tag}" terraform-docs --version
+  compare_version "${tag}" tfsec --version
+}
+
 function test_milmove_orders() {
   tag=milmove-orders
   echo
@@ -105,6 +115,9 @@ for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders;
     ;;
     milmove-infra)
       test_milmove_infra
+    ;;
+    milmove-infra-tf13)
+      test_milmove_infra_tf13
     ;;
     milmove-orders)
       test_milmove_orders
