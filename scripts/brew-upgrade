@@ -17,7 +17,7 @@ brew upgrade \
     pre-commit \
     shellcheck \
     terraform-docs \
-    liamg/tfsec/tfsec \
+    tfsec \
     tfenv \
     yarn
 
