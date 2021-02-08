@@ -22,5 +22,5 @@ for clarity).
 - [pre-commit](https://github.com/pre-commit/pre-commit/releases)
 - [terraform-docs](https://github.com/segmentio/terraform-docs/releases)
 - [terraform](https://github.com/hashicorp/terraform/releases)
-- [tfsec](https://github.com/liamg/tfsec/releases)
+- [tfsec](https://github.com/tfsec/tfsec/releases)
 - [yarn](https://github.com/yarnpkg/yarn/releases)
