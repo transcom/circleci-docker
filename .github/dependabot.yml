@@ -1,0 +1,74 @@
+version: 2
+updates:
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-app"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-infra"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-orders"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-app-browsers"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-cypress"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: npm
+  directory: "/milmove-cypress"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-infra-tf13"
+  schedule:
+    interval: weekly
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
