@@ -15,8 +15,8 @@ RUN set -ex && cd ~ \
   && rm -vrf shellcheck-v${SHELLCHECK_VERSION} shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
 
 # install circleci cli
-ARG CIRCLECI_CLI_VERSION=0.1.14827
-ARG CIRCLECI_CLI_SHA256SUM=cc4c0d7c86bc5603b39982aab667f49ef160dfbb5361d36c6132e31fd237ad77
+ARG CIRCLECI_CLI_VERSION=0.1.14915
+ARG CIRCLECI_CLI_SHA256SUM=ebdf42047a32b3f44280205c99936dc9880cc08f7a5d5db94b0a0eb5f67dd437
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/CircleCI-Public/circleci-cli/releases/download/v${CIRCLECI_CLI_VERSION}/circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && [ $(sha256sum circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz | cut -f1 -d' ') = ${CIRCLECI_CLI_SHA256SUM} ] \
@@ -28,7 +28,7 @@ RUN set -ex && cd ~ \
 
 # install awscliv2, disable default pager (less)
 ENV AWS_PAGER=""
-ARG AWSCLI_VERSION=2.1.25
+ARG AWSCLI_VERSION=2.1.27
 COPY sigs/awscliv2_pgp.key /tmp/awscliv2_pgp.key
 RUN gpg --import /tmp/awscliv2_pgp.key
 RUN set -ex && cd ~ \
