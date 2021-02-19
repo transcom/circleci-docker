@@ -27,7 +27,6 @@ For the latest stable images:
 * `milmove/circleci-docker:milmove-cypress`
 * `milmove/circleci-docker:milmove-infra`
 * `milmove/circleci-docker:milmove-infra-tf13`
-* `milmove/circleci-docker:milmove-orders`
 
 For static tags, use tags including the git hash. You can find the hashes in this repo, from the [CircleCI builds page](https://circleci.com/gh/milmove/circleci-docker/tree/master), or from the [Docker Hub tags](https://hub.docker.com/r/milmove/circleci-docker/tags/) page.
 
@@ -67,9 +66,11 @@ In addition to the Base Image this contains:
 * [Terraform](https://www.terraform.io/) at version 0.12.x
 * [terraform-docs](https://github.com/segmentio/terraform-docs)
 
-### MilMove Orders
+### MilMove Orders (deprecated)
 
-In addition to the Base Image this contains:
+The code for [milmove/circleci-docker:milmove-orders](https://github.com/transcom/circleci-docker/tree/db683d4df0175a6048e6ef97d872402fe72269dc/milmove-orders) [was deleted](https://github.com/transcom/circleci-docker/pull/85) in February 2021. It is no longer used.
+
+In addition to the Base Image this contained:
 
 * [golang](https://golang.org/)
 * [go-swagger](https://github.com/go-swagger/go-swagger)
@@ -99,8 +100,6 @@ docker pull milmove/circleci-docker:milmove-app-browsers
 docker pull milmove/circleci-docker:milmove-cypress
 docker pull milmove/circleci-docker:milmove-infra
 docker pull milmove/circleci-docker:milmove-infra-tf13
-docker pull milmove/circleci-docker:milmove-orders
-
 ```
 
 This should build cleanly locally, but an updated image needs to exist to verify you have all the things.

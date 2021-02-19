@@ -48,10 +48,3 @@ pushd milmove-infra-tf13
 docker build -t milmove/circleci-docker:milmove-infra-tf13 \
              .
 popd
-
-pushd milmove-orders
-docker build --build-arg CACHE_APT="$CACHE_APT" \
-             --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t milmove/circleci-docker:milmove-orders \
-             .
-popd

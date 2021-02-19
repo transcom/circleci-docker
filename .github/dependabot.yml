@@ -33,14 +33,6 @@ updates:
   labels:
   - dependencies
 - package-ecosystem: docker
-  directory: "/milmove-orders"
-  schedule:
-    interval: weekly
-    time: "11:00"
-  open-pull-requests-limit: 10
-  labels:
-  - dependencies
-- package-ecosystem: docker
   directory: "/milmove-app-browsers"
   schedule:
     interval: weekly
