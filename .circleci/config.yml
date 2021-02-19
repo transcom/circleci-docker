@@ -7,8 +7,8 @@ jobs:
       - run:
           name: Check for reserved branch names
           command: |
-            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-app-browsers || $CIRCLE_BRANCH = milmove-cypress || $CIRCLE_BRANCH = milmove-infra || $CIRCLE_BRANCH = milmove-orders ]]; then
-              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-app-browsers', 'milmove-cypress', 'milmove-infra', 'milmove-orders'; these are meaningful tags."
+            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-app-browsers || $CIRCLE_BRANCH = milmove-cypress || $CIRCLE_BRANCH = milmove-infra ]]; then
+              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-app-browsers', 'milmove-cypress', 'milmove-infra'; these are meaningful tags."
               exit 1
             fi
       - run:
@@ -51,10 +51,6 @@ jobs:
               # milmove-infra-tf13
               docker tag  milmove/circleci-docker:milmove-infra-tf13 milmove/circleci-docker:milmove-infra-tf13-$tag
               docker push milmove/circleci-docker:milmove-infra-tf13-$tag
-
-              # milmove-orders
-              docker tag  milmove/circleci-docker:milmove-orders milmove/circleci-docker:milmove-orders-$tag
-              docker push milmove/circleci-docker:milmove-orders-$tag
             done
 
             # push default tags on master
@@ -65,5 +61,4 @@ jobs:
               docker push milmove/circleci-docker:milmove-cypress
               docker push milmove/circleci-docker:milmove-infra
               docker push milmove/circleci-docker:milmove-infra-tf13
-              docker push milmove/circleci-docker:milmove-orders
             fi

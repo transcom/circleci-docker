@@ -94,15 +94,7 @@ function test_milmove_infra_tf13() {
   compare_version "${tag}" tfsec --version
 }
 
-function test_milmove_orders() {
-  tag=milmove-orders
-  echo
-  echo "Comparing against ${tag} Dockerfile"
-
-  compare_version "${tag}" go version
-}
-
-for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders; do
+for tag in latest milmove-app milmove-app-browsers milmove-infra; do
   case ${tag} in
     latest)
       test_latest
@@ -118,9 +110,6 @@ for tag in latest milmove-app milmove-app-browsers milmove-infra milmove-orders;
     ;;
     milmove-infra-tf13)
       test_milmove_infra_tf13
-    ;;
-    milmove-orders)
-      test_milmove_orders
     ;;
 esac
 
