@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: docker
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -11,7 +11,7 @@ updates:
 - package-ecosystem: pip
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -19,7 +19,7 @@ updates:
 - package-ecosystem: docker
   directory: "/milmove-app"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -27,7 +27,7 @@ updates:
 - package-ecosystem: docker
   directory: "/milmove-infra"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -35,7 +35,7 @@ updates:
 - package-ecosystem: docker
   directory: "/milmove-app-browsers"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -43,7 +43,7 @@ updates:
 - package-ecosystem: docker
   directory: "/milmove-cypress"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -51,7 +51,7 @@ updates:
 - package-ecosystem: npm
   directory: "/milmove-cypress"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
@@ -59,7 +59,7 @@ updates:
 - package-ecosystem: docker
   directory: "/milmove-infra-tf13"
   schedule:
-    interval: weekly
+    interval: daily
     time: "11:00"
   open-pull-requests-limit: 10
   labels:
