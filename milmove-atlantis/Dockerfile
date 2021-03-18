@@ -1,4 +1,4 @@
-# 
+#
 
 # CircleCI docker image to run within
 FROM milmove/circleci-docker:base
