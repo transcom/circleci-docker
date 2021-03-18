@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/transcom/circleci-docker/tree/master.svg?style=svg)](https://circleci.com/gh/transcom/circleci-docker/tree/master)
 
-This repository manages the custom-built docker images for use with CircleCI and development. Each image contains the minimum necessary tools to run testing and devleopment.
+This repository manages the custom-built docker images for use with CircleCI and development. Each image contains the minimum necessary tools to run testing and development.
 
 The base image contains Python 3.8.x.
 
