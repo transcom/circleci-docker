@@ -1,5 +1,3 @@
-#
-
 # CircleCI docker image to run within
 FROM milmove/circleci-docker:base
 
@@ -9,9 +7,11 @@ USER root
 ARG version
 # Install latest system patches
 RUN set -ex \
-    && apk update \
-    && apk upgrade --no-cache \
-    && rm -rf /var/cache/apk/*
+    && apt-get update \
+    && apt- upgrade --no-cache \
+    && rm -rf /var/cache/apt/*
+
+USER circleci
 
 # install terraform
 ARG TERRAFORM_VERSION=0.13.6
