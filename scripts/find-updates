@@ -94,6 +94,14 @@ function test_milmove_infra_tf13() {
   compare_version "${tag}" tfsec --version
 }
 
+function test_milmove_atlantis() {
+  tag=milmove-atlantis
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" terraform --version
+}
+
 for tag in latest milmove-app milmove-app-browsers milmove-infra; do
   case ${tag} in
     latest)
@@ -110,6 +118,9 @@ for tag in latest milmove-app milmove-app-browsers milmove-infra; do
     ;;
     milmove-infra-tf13)
       test_milmove_infra_tf13
+    ;;
+    milmove-atlantis)
+      test_milmove_atlantis
     ;;
 esac
 

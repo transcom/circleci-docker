@@ -51,6 +51,10 @@ jobs:
               # milmove-infra-tf13
               docker tag  milmove/circleci-docker:milmove-infra-tf13 milmove/circleci-docker:milmove-infra-tf13-$tag
               docker push milmove/circleci-docker:milmove-infra-tf13-$tag
+
+              # milmove-atlantis
+              docker tag  milmove/circleci-docker:milmove-atlantis milmove/circleci-docker:milmove-atlantis-$tag
+              docker push milmove/circleci-docker:milmove-atlantis-$tag
             done
 
             # push default tags on master
@@ -61,4 +65,5 @@ jobs:
               docker push milmove/circleci-docker:milmove-cypress
               docker push milmove/circleci-docker:milmove-infra
               docker push milmove/circleci-docker:milmove-infra-tf13
+              docker push milmove/circleci-docker:milmove-atlantis
             fi

@@ -48,3 +48,8 @@ pushd milmove-infra-tf13
 docker build -t milmove/circleci-docker:milmove-infra-tf13 \
              .
 popd
+
+pushd milmove-atlantis
+docker build -t milmove/circleci-docker:milmove-atlantis \
+             .
+popd
