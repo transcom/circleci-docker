@@ -8,7 +8,7 @@ USER root
 RUN set -ex \
     && apt-get update \
     && apt- upgrade --no-cache \
-    && rm -rf /var/cache/apt/*
+    && rm -rf /var/lib/apt/lists/*
 
 USER circleci
 
