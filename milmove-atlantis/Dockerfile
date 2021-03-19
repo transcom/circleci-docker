@@ -4,7 +4,6 @@ FROM milmove/circleci-docker:base
 # Base image uses "circleci", to avoid using `sudo` run as root user
 USER root
 
-ARG version
 # Install latest system patches
 RUN set -ex \
     && apt-get update \
