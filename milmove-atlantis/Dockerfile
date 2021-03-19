@@ -6,9 +6,8 @@ USER root
 
 # Install latest system patches
 RUN set -ex \
-    && apt-get update \
-    && apt- upgrade --no-cache \
-    && rm -rf /var/lib/apt/lists/*
+  && apt-get update && apt-get install -y \
+  && rm -rf /var/lib/apt/lists/*
 
 USER circleci
 
