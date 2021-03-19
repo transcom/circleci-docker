@@ -2,6 +2,7 @@
 FROM milmove/circleci-docker:base
 
 # Base image uses "circleci", to avoid using `sudo` run as root user
+# Start as user root before the install
 USER root
 
 # Install latest system patches
@@ -30,4 +31,5 @@ RUN set -ex && cd ~ \
 
 LABEL name="atlantis"
 
+# Switch to user circleci to hand it back to the base image
 USER circleci
