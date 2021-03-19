@@ -9,8 +9,6 @@ RUN set -ex \
   && apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
-USER circleci
-
 # install terraform
 ARG TERRAFORM_VERSION=0.13.6
 ARG TERRAFORM_SHA256SUM=55f2db00b05675026be9c898bdd3e8230ff0c5c78dd12d743ca38032092abfc9
