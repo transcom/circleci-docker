@@ -33,3 +33,5 @@ LABEL name="atlantis"
 
 # Switch to user circleci to hand it back to the base image
 USER circleci
+
+EXPOSE 4141
