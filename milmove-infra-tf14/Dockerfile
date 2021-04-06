@@ -8,8 +8,8 @@ FROM milmove/circleci-docker:base
 USER root
 
 # install terraform
-ARG TERRAFORM_VERSION=0.13.6
-ARG TERRAFORM_SHA256SUM=55f2db00b05675026be9c898bdd3e8230ff0c5c78dd12d743ca38032092abfc9
+ARG TERRAFORM_VERSION=0.14.9
+ARG TERRAFORM_SHA256SUM=47e097cfbfb64e97492934f50e646cb84df952eb76897182557811b45603dbf0
 RUN set -ex && cd ~ \
   && curl -sSLO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && [ $(sha256sum terraform_${TERRAFORM_VERSION}_linux_amd64.zip | cut -f1 -d ' ') = ${TERRAFORM_SHA256SUM} ] \
@@ -17,8 +17,8 @@ RUN set -ex && cd ~ \
   && rm -vf terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 # install terraform-docs
-ARG TERRAFORM_DOCS_VERSION=0.11.2
-ARG TERRAFORM_DOCS_SHA256SUM=0d1e42d6fcb15b14027ae8efb794edb1cd7faa7a32507ccad449340529d04937
+ARG TERRAFORM_DOCS_VERSION=0.12.1
+ARG TERRAFORM_DOCS_SHA256SUM=32c0611a33a9c83857240ce2095287a5329564f26acd04818da5156192ecf401
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 \
   && [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 | cut -f1 -d' ') = ${TERRAFORM_DOCS_SHA256SUM} ] \
@@ -26,8 +26,8 @@ RUN set -ex && cd ~ \
   && mv terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 /usr/local/bin/terraform-docs
 
 # install tfsec
-ARG TFSEC_VERSION=0.37.2
-ARG TFSEC_SHA256SUM=bd3fc58aad65b32eb4f4411770fcc442a324f6191e3723207f644cb6207b9cff
+ARG TFSEC_VERSION=0.39.20
+ARG TFSEC_SHA256SUM=3114ff66ecd42d56e17ae47dfb78bd586c3f2a05d7a32bbda4ab8781ec7411f7
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
