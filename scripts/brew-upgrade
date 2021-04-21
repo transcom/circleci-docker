@@ -24,4 +24,4 @@ brew upgrade \
 nodenv install 12.16.3 --skip-existing
 nodenv local 12.16.3
 tfenv install latest
-tfenv use 0.13.6
+tfenv use 0.14.9
