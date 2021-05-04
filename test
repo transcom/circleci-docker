@@ -54,7 +54,7 @@ function test_milmove_cypress() {
 }
 
 function test_milmove_infra() {
-  tag=milmove-infra
+  tag=milmove-infra-tf15
   echo "Testing ${tag} Dockerfile"
 
   docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version

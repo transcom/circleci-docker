@@ -75,7 +75,7 @@ function test_milmove_app_browsers() {
 }
 
 function test_milmove_infra() {
-  tag=milmove-infra
+  tag=milmove-infra-tf15
   echo
   echo "Comparing against ${tag} Dockerfile"
 

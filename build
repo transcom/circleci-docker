@@ -39,8 +39,8 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
              .
 popd
 
-pushd milmove-infra
-docker build -t milmove/circleci-docker:milmove-infra \
+pushd milmove-infra-tf15 \
+docker build -t milmove/circleci-docker:milmove-infra-tf15 \
              .
 popd
 
