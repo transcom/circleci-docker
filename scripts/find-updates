@@ -74,7 +74,7 @@ function test_milmove_app_browsers() {
   # docker run -it "milmove/circleci-docker:${tag}" chromedriver --version
 }
 
-function test_milmove_infra() {
+function test_milmove_infra_tf15() {
   tag=milmove-infra-tf15
   echo
   echo "Comparing against ${tag} Dockerfile"

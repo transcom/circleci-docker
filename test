@@ -53,7 +53,7 @@ function test_milmove_cypress() {
   echo "Passed ${tag}"
 }
 
-function test_milmove_infra() {
+function test_milmove_infra_tf15() {
   tag=milmove-infra-tf15
   echo "Testing ${tag} Dockerfile"
 
