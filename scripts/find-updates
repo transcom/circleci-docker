@@ -114,7 +114,7 @@ for tag in latest milmove-app milmove-app-browsers milmove-infra-tf15; do
       test_milmove_app_browsers
     ;;
     milmove-infra-tf15)
-      test_milmove_infra
+      test_milmove_infra_tf15
     ;;
     milmove-infra-tf14)
       test_milmove_infra_tf14

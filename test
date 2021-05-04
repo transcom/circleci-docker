@@ -96,7 +96,7 @@ for tag in latest milmove-app milmove-app-browsers milmove-cypress milmove-infra
       test_milmove_cypress
     ;;
     milmove-infra-tf15)
-      test_milmove_infra
+      test_milmove_infra_tf15
     ;;
     milmove-infra-tf14)
       test_milmove_infra_tf14
