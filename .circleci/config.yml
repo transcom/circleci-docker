@@ -46,7 +46,7 @@ jobs:
 
               # milmove-infra
               docker tag  milmove/circleci-docker:milmove-infra milmove/circleci-docker:milmove-infra-$tag
-              docker push milmove/circleci-docker:milmove-infra-$tag
+              docker push milmove/circleci-docker:milmove-infra-tf15-$tag
 
               # milmove-infra-tf14
               docker tag  milmove/circleci-docker:milmove-infra-tf14 milmove/circleci-docker:milmove-infra-tf14-$tag
@@ -63,7 +63,7 @@ jobs:
               docker push milmove/circleci-docker:milmove-app
               docker push milmove/circleci-docker:milmove-app-browsers
               docker push milmove/circleci-docker:milmove-cypress
-              docker push milmove/circleci-docker:milmove-infra
+              docker push milmove/circleci-docker:milmove-infra-tf15
               docker push milmove/circleci-docker:milmove-infra-tf14
               docker push milmove/circleci-docker:milmove-atlantis
             fi
