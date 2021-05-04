@@ -1,6 +1,5 @@
 # This is a copy of the milmove-infra Docker image that can be used to allow a
-# sidecar upgrade to Terraform 0.13. Once the upgrade is complete, this image
-# can be deleted and its contents can be moved over to the milmove-infra image.
+# sidecar upgrade of Terraform. 
 
 # CircleCI docker image to run within
 FROM milmove/circleci-docker:base

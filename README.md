@@ -25,7 +25,7 @@ For the latest stable images:
 * `milmove/circleci-docker:milmove-app`
 * `milmove/circleci-docker:milmove-app-browsers`
 * `milmove/circleci-docker:milmove-cypress`
-* `milmove/circleci-docker:milmove-infra`
+* `milmove/circleci-docker:milmove-infra-tf15`
 * `milmove/circleci-docker:milmove-infra-tf14`
 * `milmove/circleci-docker:milmove-atlantis`
 

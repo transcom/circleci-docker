@@ -25,7 +25,7 @@ updates:
   labels:
   - dependencies
 - package-ecosystem: docker
-  directory: "/milmove-infra"
+  directory: "/milmove-infra-tf15"
   schedule:
     interval: daily
     time: "11:00"
