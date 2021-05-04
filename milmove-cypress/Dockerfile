@@ -28,8 +28,8 @@ RUN set -ex && cd ~ \
   && rm -vrf /var/lib/apt/lists/*
 
 WORKDIR /home/circleci
-COPY package.json /home/circleci/package.json
-COPY yarn.lock /home/circleci/yarn.lock
+COPY milmove-cypress/package.json /home/circleci/package.json
+COPY milmove-cypress/yarn.lock /home/circleci/yarn.lock
 
 RUN chown -R circleci:circleci /home/circleci
 
