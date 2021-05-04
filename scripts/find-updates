@@ -102,7 +102,7 @@ function test_milmove_atlantis() {
   compare_version "${tag}" terraform --version
 }
 
-for tag in latest milmove-app milmove-app-browsers milmove-infra-tf15; do
+for tag in latest milmove-app milmove-app-browsers milmove-infra-15 test_milmove_infra_tf14 test_milmove_atlantis; do
   case ${tag} in
     latest)
       test_latest
