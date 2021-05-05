@@ -18,12 +18,14 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
              -t milmove/circleci-docker:base \
              .
 
+
 pushd milmove-app
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-app \
              .
 popd
+
 
 pushd milmove-app-browsers
 docker build --build-arg CACHE_APT="$CACHE_APT" \
@@ -32,28 +34,24 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
              .
 popd
 
-pushd milmove-cypress
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-cypress \
-             -f milmove-cypress \
+             -f milmove-cypress/Dockerfile .  
+
+ 
+pushd milmove-infra-tf15
+docker build -t milmove/circleci-docker:milmove-infra-tf15 \
              .
 popd
 
-pushd milmove-infra-tf15 
-docker build -t milmove/circleci-docker:milmove-infra-tf15 \
-             -f milmove-infra-tf15
-             .
-popd
 
 pushd milmove-infra-tf14
 docker build -t milmove/circleci-docker:milmove-infra-tf14 \
-             -f milmove-infra-tf14
              .
 popd
 
 pushd milmove-atlantis
 docker build -t milmove/circleci-docker:milmove-atlantis \
-             -f milmove-atlantis
              .
 popd
