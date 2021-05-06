@@ -17,8 +17,8 @@ RUN set -ex && cd ~ \
     && rm -vf terraform_${TERRAFORM_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_SHA256SUMS terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
 
 # install terraform-docs
-ARG TERRAFORM_DOCS_VERSION=0.12.1
-ARG TERRAFORM_DOCS_SHA256SUM=32c0611a33a9c83857240ce2095287a5329564f26acd04818da5156192ecf401
+ARG TERRAFORM_DOCS_VERSION=0.13.0
+ARG TERRAFORM_DOCS_SHA256SUM=2fad6ac8eeb3d1c26b2d6d5cc08898986039bc3a4c676a87d00f810694224fee
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 \
   && [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 | cut -f1 -d' ') = ${TERRAFORM_DOCS_SHA256SUM} ] \
@@ -26,8 +26,8 @@ RUN set -ex && cd ~ \
   && mv terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64 /usr/local/bin/terraform-docs
 
 # install tfsec
-ARG TFSEC_VERSION=0.39.21
-ARG TFSEC_SHA256SUM=35903cb39f5ef6aea5e18953a43d5ceb6f414cb0b4c693b6c1f61de8bc1f5063
+ARG TFSEC_VERSION=0.39.29
+ARG TFSEC_SHA256SUM=285fcf7acdaf557c63bf1925a05654f3fd3cb250bb285d0c2d6f0410228c1765
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
