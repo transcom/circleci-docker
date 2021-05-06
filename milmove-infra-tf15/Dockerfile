@@ -27,7 +27,7 @@ RUN set -ex && cd ~ \
 
 # install tfsec
 ARG TFSEC_VERSION=0.39.29
-ARG TFSEC_SHA256SUM=285fcf7acdaf557c63bf1925a05654f3fd3cb250bb285d0c2d6f0410228c1765
+ARG TFSEC_SHA256SUM=d499ab73633b737aa9b52d1ff8c319ff4cebe36e82a26ca0dfe6a1bbb30bcb66
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
