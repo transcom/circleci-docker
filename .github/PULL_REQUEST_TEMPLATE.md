@@ -8,6 +8,7 @@ Add the changelog or release URL for the tool being updated. Some examples below
 for clarity).
 
 - [AWS CLI](https://github.com/aws/aws-cli/blob/v2/CHANGELOG.rst)
+- [atl🍑ntis](https://github.com/runatlantis/atlantis/releases)
 - [chamber](https://github.com/segmentio/chamber/releases)
 - [cypress](https://www.cypress.io/)
 - [CircleCI](https://github.com/CircleCI-Public/circleci-cli/releases)

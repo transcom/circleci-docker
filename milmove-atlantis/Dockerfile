@@ -1,4 +1,4 @@
-FROM runatlantis/atlantis:v0.16.1
+FROM runatlantis/atlantis:v0.17.0
 # This image installs this ^----- particular version of atlantis
 # at /usr/local/bin/atlantis and several versions of terraform.
 # See: https://github.com/runatlantis/atlantis/releases and
@@ -8,6 +8,9 @@ FROM runatlantis/atlantis:v0.16.1
 # DEFAULT_TERRAFORM_VERSION environment variable in the container
 # See: https://github.com/runatlantis/atlantis/blob/master/Dockerfile
 # for available versions
+
+# # install terraform binaries
+ENV DEFAULT_TERRAFORM_VERSION=0.15.4
 
 # Bust the cache before running non-repeatable commands
 ARG version
