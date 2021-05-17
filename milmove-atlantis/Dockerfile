@@ -9,9 +9,6 @@ FROM runatlantis/atlantis:v0.17.0
 # See: https://github.com/runatlantis/atlantis/blob/master/Dockerfile
 # for available versions
 
-# # install terraform binaries
-ENV DEFAULT_TERRAFORM_VERSION=0.15.4
-
 # Bust the cache before running non-repeatable commands
 ARG version
 
