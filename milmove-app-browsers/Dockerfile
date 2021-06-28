@@ -35,7 +35,7 @@ RUN set -ex && cd ~ \
   && rm -vrf /var/lib/apt/lists/*
 
 # install chrome
-# Use these instructions: https://github.com/CircleCI-Public/circleci-dockerfiles/blob/master/node/images/14.16.1-buster/browsers/Dockerfile
+# Use these instructions: https://github.com/CircleCI-Public/circleci-dockerfiles/blob/master/node/images/14.17.1-buster/browsers/Dockerfile
 
 RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)  \
