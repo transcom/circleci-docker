@@ -21,7 +21,7 @@ brew upgrade \
     tfenv \
     yarn
 
-nodenv install 12.16.3 --skip-existing
-nodenv local 12.16.3
+nodenv install 14.17.1 --skip-existing
+nodenv local 14.17.1
 tfenv install latest
 tfenv use 0.14.9
