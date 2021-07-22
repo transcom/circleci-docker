@@ -64,6 +64,6 @@ jobs:
               docker push milmove/circleci-docker:milmove-app-browsers
               docker push milmove/circleci-docker:milmove-cypress
               docker push milmove/circleci-docker:milmove-infra-tf15
-              docker push milmove/circleci-docker:milmove-infra-tf14
+              docker push milmove/circleci-docker:milmove-infra-tf103
               docker push milmove/circleci-docker:milmove-atlantis
             fi
