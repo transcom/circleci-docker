@@ -46,8 +46,8 @@ docker build -t milmove/circleci-docker:milmove-infra-tf15 \
 popd
 
 
-pushd milmove-infra-tf14
-docker build -t milmove/circleci-docker:milmove-infra-tf14 \
+pushd milmove-infra-tf103
+docker build -t milmove/circleci-docker:milmove-infra-tf103 \
              .
 popd
 
