@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -x -eu -o pipefail
+
+if [[ $CIRCLE_BRANCH = latest ]]; then
+    echo "Don't use a branch named 'latest'; these are meaningful tags."
+    exit 1
+fi

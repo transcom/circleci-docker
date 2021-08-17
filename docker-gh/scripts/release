@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -x -eu -o pipefail
+
+shopt -s extglob
+for tag in $CIRCLE_SHA1 ${CIRCLE_BRANCH//+([^A-Za-z0-9-.])/-}; do
+    # latest
+    docker tag  trussworks/gh-cli trussworks/gh-cli:"$tag"
+    docker push trussworks/gh-cli:"$tag"
+done
+
+# default tags
+if [[ $CIRCLE_BRANCH = master ]]; then
+    docker push trussworks/gh-cli
+fi

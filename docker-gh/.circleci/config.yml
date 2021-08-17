@@ -1,0 +1,32 @@
+version: 2.1
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Check for reserved branch names
+          command: make check_branch
+      - run:
+          name: Login to Docker Hub
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - run:
+          name: Build containers
+          command: make build
+
+      - run:
+          name: Test containers
+          command: make test
+
+      - run:
+          name: Release container
+          command: make release
+workflows:
+  validate:
+    jobs:
+    - build:
+        context:
+        - org-global
+  version: 2.1
+

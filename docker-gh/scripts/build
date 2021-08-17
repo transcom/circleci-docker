@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -x -eu -o pipefail
+
+# bust cache for apt-get daily
+CACHE_APT=$(date '+%Y-%m-%d')
+
+docker build --build-arg CACHE_APT="$CACHE_APT" \
+	     -t trussworks/gh-cli \
+	     .
