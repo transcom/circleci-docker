@@ -30,9 +30,9 @@ RUN set -ex && cd ~ \
 
 #install tfsec
 ARG TFSEC_VERSION=0.58.4
-ARG TFSEC_SHA256SUM=0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5
+ARG TFSEC_SHA256SUM=f96fcf8fd22256192cd9ff7a6c8655c7012ff304c3a5eff332bd9d8ff43ed30b
 RUN set -ex && cd ~ \
-  && curl -sSLO https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VERSION}/tfsec-linux-amd64 \
+  && curl -sSLO https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
   && chmod 755 tfsec-linux-amd64 \
   && mv tfsec-linux-amd64 /usr/local/bin/tfsec
