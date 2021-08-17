@@ -55,3 +55,8 @@ pushd milmove-atlantis
 docker build -t milmove/circleci-docker:milmove-atlantis \
              .
 popd
+
+pushd milmove-docker-gh
+docker build -t milmove/circleci-docker:milmove-docker-gh \
+             .
+popd

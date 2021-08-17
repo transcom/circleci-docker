@@ -57,8 +57,8 @@ jobs:
               docker push milmove/circleci-docker:milmove-atlantis-$tag
 
               # docker-github
-              docker tag  milmove/circleci-docker:milmove-atlantis milmove/circleci-docker:milmove-atlantis-$tag
-              docker push milmove/circleci-docker:milmove-atlantis-$tag
+              docker tag  milmove/circleci-docker:milmove-docker-gh milmove/circleci-docker:milmove-docker-gh-$tag
+              docker push milmove/circleci-docker:milmove-docker-gh-$tag
             done
 
             # push default tags on master
@@ -70,4 +70,5 @@ jobs:
               docker push milmove/circleci-docker:milmove-infra-tf15
               docker push milmove/circleci-docker:milmove-infra-tf103
               docker push milmove/circleci-docker:milmove-atlantis
+              docker push milmove/circleci-docker:milmove-docker-gh
             fi
