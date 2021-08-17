@@ -65,6 +65,18 @@ function test_milmove_infra_tf103() {
   echo "Passed ${tag}"
 }
 
+function test_milmove_infra_tf104() {
+  tag=milmove-infra-tf104
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
+  docker run -it "milmove/circleci-docker:${tag}" terraform --version
+  docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
+  docker run -it "milmove/circleci-docker:${tag}" tfsec --version
+
+  echo "Passed ${tag}"
+}
+
 function test_milmove_infra_tf15() {
   tag=milmove-infra-tf15
   echo "Testing ${tag} Dockerfile"
@@ -77,7 +89,7 @@ function test_milmove_infra_tf15() {
   echo "Passed ${tag}"
 }
 
-for tag in latest milmove-app milmove-app-browsers milmove-cypress milmove-infra-tf103 milmove-infra-tf15; do
+for tag in latest milmove-app milmove-app-browsers milmove-cypress milmove-infra-tf103 milmove-infra-tf104 milmove-infra-tf15; do
   echo
   echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
   docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
@@ -100,6 +112,9 @@ for tag in latest milmove-app milmove-app-browsers milmove-cypress milmove-infra
     ;;
     milmove-infra-tf103)
       test_milmove_infra_tf103
+    ;;
+    milmove-infra-tf104)
+      test_milmove_infra_tf104
     ;;
 esac
 

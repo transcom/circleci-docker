@@ -94,6 +94,16 @@ function test_milmove_infra_tf103() {
   compare_version "${tag}" tfsec --version
 }
 
+function test_milmove_infra_tf104() {
+  tag=milmove-infra-tf104
+  echo
+  echo "Comparing against ${tag} Dockerfile"
+
+  compare_version "${tag}" terraform --version
+  compare_version "${tag}" terraform-docs --version
+  compare_version "${tag}" tfsec --version
+}
+
 function test_milmove_atlantis() {
   tag=milmove-atlantis
   echo
@@ -102,7 +112,7 @@ function test_milmove_atlantis() {
   compare_version "${tag}" terraform --version
 }
 
-for tag in latest milmove-app milmove-app-browsers milmove-infra-15 test_milmove_infra_tf103 test_milmove_atlantis; do
+for tag in latest milmove-app milmove-app-browsers milmove-infra-15 test_milmove_infra_tf103 test_milmove_infra_tf104 test_milmove_atlantis; do
   case ${tag} in
     latest)
       test_latest
@@ -118,6 +128,9 @@ for tag in latest milmove-app milmove-app-browsers milmove-infra-15 test_milmove
     ;;
     milmove-infra-tf103)
       test_milmove_infra_tf103
+    ;;
+    milmove-infra-tf104)
+      test_milmove_infra_tf104
     ;;
     milmove-atlantis)
       test_milmove_atlantis
