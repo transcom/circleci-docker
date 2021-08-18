@@ -37,9 +37,9 @@ popd
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-cypress \
-             -f milmove-cypress/Dockerfile .  
+             -f milmove-cypress/Dockerfile .
 
- 
+
 pushd milmove-infra-tf15
 docker build -t milmove/circleci-docker:milmove-infra-tf15 \
              .
@@ -48,6 +48,11 @@ popd
 
 pushd milmove-infra-tf103
 docker build -t milmove/circleci-docker:milmove-infra-tf103 \
+             .
+popd
+
+pushd milmove-infra-tf104
+docker build -t milmove/circleci-docker:milmove-infra-tf104 \
              .
 popd
 
