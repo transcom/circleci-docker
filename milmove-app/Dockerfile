@@ -56,8 +56,13 @@ RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
   && : Add Node 14.x \
+  # This is so we can pin to specific Node versions
+  # See https://github.com/nodesource/distributions/issues/33
+  # See https://deb.nodesource.com/node_14.x/pool/main/n/nodejs/ for list of packages
   && curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
-  && echo "deb https://deb.nodesource.com/node_14.x $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/nodesource.list \
+  && curl -o nodejs.deb https://deb.nodesource.com/node_14.x/pool/main/n/nodejs/nodejs_14.17.1-1nodesource1_amd64.deb \
+  && dpkg -i ./nodejs.deb \
+  && rm nodejs.deb \
   && : Add Yarn \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
