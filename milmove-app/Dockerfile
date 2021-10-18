@@ -52,7 +52,6 @@ RUN set -ex && cd ~ \
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
 ARG CACHE_APT
-ARG NODE_VERSION=14.17.1
 RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
@@ -61,7 +60,7 @@ RUN set -ex && cd ~ \
   # See https://github.com/nodesource/distributions/issues/33
   # See https://deb.nodesource.com/node_14.x/pool/main/n/nodejs/ for list of packages
   && curl -sS https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
-  && curl -o nodejs.deb https://deb.nodesource.com/node_14.x/pool/main/n/nodejs/nodejs_${NODE_VERSION}-1nodesource1_amd64.deb \
+  && curl -o nodejs.deb https://deb.nodesource.com/node_14.x/pool/main/n/nodejs/nodejs_14.17.1-1nodesource1_amd64.deb \
   && dpkg -i ./nodejs.deb \
   && rm nodejs.deb \
   && : Add Yarn \
