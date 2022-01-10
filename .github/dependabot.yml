@@ -25,14 +25,6 @@ updates:
   labels:
   - dependencies
 - package-ecosystem: docker
-  directory: "/milmove-infra-tf15"
-  schedule:
-    interval: daily
-    time: "11:00"
-  open-pull-requests-limit: 10
-  labels:
-  - dependencies
-- package-ecosystem: docker
   directory: "/milmove-app-browsers"
   schedule:
     interval: daily
@@ -57,7 +49,7 @@ updates:
   labels:
   - dependencies
 - package-ecosystem: docker
-  directory: "/milmove-infra-tf103"
+  directory: "/milmove-infra-tf112"
   schedule:
     interval: daily
     time: "11:00"
@@ -66,6 +58,14 @@ updates:
   - dependencies
 - package-ecosystem: docker
   directory: "/milmove-infra-tf104"
+  schedule:
+    interval: daily
+    time: "11:00"
+  open-pull-requests-limit: 10
+  labels:
+  - dependencies
+- package-ecosystem: docker
+  directory: "/milmove-atlantis"
   schedule:
     interval: daily
     time: "11:00"

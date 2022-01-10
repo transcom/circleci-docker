@@ -1,4 +1,4 @@
-FROM runatlantis/atlantis:v0.17.2
+FROM runatlantis/atlantis:v0.18.1
 # This image installs this ^----- particular version of atlantis
 # at /usr/local/bin/atlantis and several versions of terraform.
 # See: https://github.com/runatlantis/atlantis/releases and
@@ -8,9 +8,6 @@ FROM runatlantis/atlantis:v0.17.2
 # DEFAULT_TERRAFORM_VERSION environment variable in the container
 # See: https://github.com/runatlantis/atlantis/blob/master/Dockerfile
 # for available versions
-
-# Bust the cache before running non-repeatable commands
-ARG version
 
 # Install latest system patches
 RUN set -ex \
@@ -22,6 +19,7 @@ RUN set -ex \
 RUN apk add --no-cache python3
 
 LABEL name="atlantis"
-LABEL version=$version
+
+ENV DEFAULT_TERRAFORM_VERSION=1.1.2
 
 EXPOSE 4141
