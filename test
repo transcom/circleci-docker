@@ -65,6 +65,17 @@ function test_milmove_infra_tf104() {
   echo "Passed ${tag}"
 }
 
+function test_milmove_infra_tf112() {
+  tag=milmove-infra-tf112
+  echo "Testing ${tag} Dockerfile"
+
+  docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
+  docker run -it "milmove/circleci-docker:${tag}" terraform --version
+  docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
+  docker run -it "milmove/circleci-docker:${tag}" tfsec --version
+
+  echo "Passed ${tag}"
+}
 
 for tag in latest milmove-app milmove-app-browsers milmove-cypress milmove-infra-tf104 milmove-infra-tf112; do
   echo
