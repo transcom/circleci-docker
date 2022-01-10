@@ -74,18 +74,8 @@ function test_milmove_app_browsers() {
   # docker run -it "milmove/circleci-docker:${tag}" chromedriver --version
 }
 
-function test_milmove_infra_tf15() {
-  tag=milmove-infra-tf15
-  echo
-  echo "Comparing against ${tag} Dockerfile"
-
-  compare_version "${tag}" terraform --version
-  compare_version "${tag}" terraform-docs --version
-  compare_version "${tag}" tfsec --version
-}
-
-function test_milmove_infra_tf103() {
-  tag=milmove-infra-tf103
+function test_milmove_infra_tf112() {
+  tag=milmove-infra-tf112
   echo
   echo "Comparing against ${tag} Dockerfile"
 
@@ -112,7 +102,7 @@ function test_milmove_atlantis() {
   compare_version "${tag}" terraform --version
 }
 
-for tag in latest milmove-app milmove-app-browsers milmove-infra-15 test_milmove_infra_tf103 test_milmove_infra_tf104 test_milmove_atlantis; do
+for tag in latest milmove-app milmove-app-browsers test_milmove_infra_tf112 test_milmove_infra_tf104 test_milmove_atlantis; do
   case ${tag} in
     latest)
       test_latest
@@ -123,11 +113,8 @@ for tag in latest milmove-app milmove-app-browsers milmove-infra-15 test_milmove
     milmove-app-browsers)
       test_milmove_app_browsers
     ;;
-    milmove-infra-tf15)
-      test_milmove_infra_tf15
-    ;;
-    milmove-infra-tf103)
-      test_milmove_infra_tf103
+    milmove-infra-tf112)
+      test_milmove_infra_tf112
     ;;
     milmove-infra-tf104)
       test_milmove_infra_tf104

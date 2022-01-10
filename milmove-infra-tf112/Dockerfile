@@ -1,5 +1,5 @@
 # This is a copy of the milmove-infra Docker image that can be used to allow a
-# sidecar upgrade of Terraform. 
+# sidecar upgrade of Terraform.
 
 # CircleCI docker image to run within
 FROM milmove/circleci-docker:base
@@ -7,7 +7,7 @@ FROM milmove/circleci-docker:base
 USER root
 
 # install terraform
-ARG TERRAFORM_VERSION=1.0.3
+ARG TERRAFORM_VERSION=1.1.2
 COPY sigs/hashicorp_pgp.key /tmp/hashicorp_pgp.key
 RUN gpg --import /tmp/hashicorp_pgp.key
 RUN set -ex && cd ~ \
@@ -20,27 +20,19 @@ RUN set -ex && cd ~ \
     && rm -vf terraform_${TERRAFORM_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_SHA256SUMS terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
 
 # install terraform-docs
-ARG TERRAFORM_DOCS_VERSION=0.14.1
-ARG TERRAFORM_DOCS_SHA256SUM=f0a46b13c126f06eba44178f901bb7b6b5f61a8b89e07a88988c6f45e5fcce19
+ARG TERRAFORM_DOCS_VERSION=0.16.0
+ARG TERRAFORM_DOCS_SHA256SUM=328c16cd6552b3b5c4686b8d945a2e2e18d2b8145b6b66129cd5491840010182
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz \
   && [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz | cut -f1 -d' ') = ${TERRAFORM_DOCS_SHA256SUM} ] \
   && tar -xzf terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz -C /usr/local/bin \
   && chmod 755 /usr/local/bin/terraform-docs
 
-# install tfsec
-# ARG TFSEC_VERSION=0.50.7
-# ARG TFSEC_SHA256SUM=90d5eab82ff56080f0d0d6046e4eb50212df4594b97438f9df55d96195b0de1e 
-# RUN set -ex && cd ~ \
-#   && curl -sSLO https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
-#   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
-#   && chmod 755 tfsec-linux-amd64 \
-#   && mv tfsec-linux-amd64 /usr/local/bin/tfsec
-
-ARG TFSEC_VERSION=0.39.29
-ARG TFSEC_SHA256SUM=d499ab73633b737aa9b52d1ff8c319ff4cebe36e82a26ca0dfe6a1bbb30bcb66
+#install tfsec
+ARG TFSEC_VERSION=0.63.1
+ARG TFSEC_SHA256SUM=feb3999ab1f846f2099498a32751fdb6fe2705e83e220e0d934239b10e92cf98
 RUN set -ex && cd ~ \
-  && curl -sSLO https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
+  && curl -sSLO https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
   && chmod 755 tfsec-linux-amd64 \
   && mv tfsec-linux-amd64 /usr/local/bin/tfsec

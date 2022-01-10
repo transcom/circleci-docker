@@ -7,8 +7,8 @@ jobs:
       - run:
           name: Check for reserved branch names
           command: |
-            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-app-browsers || $CIRCLE_BRANCH = milmove-cypress || $CIRCLE_BRANCH = milmove-infra-tf15 ]]; then
-              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-app-browsers', 'milmove-cypress', 'milmove-infra-tf15'; these are meaningful tags."
+            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-app-browsers || $CIRCLE_BRANCH = milmove-cypress || $CIRCLE_BRANCH = milmove-infra-tf104 || $CIRCLE_BRANCH = milmove-infra-tf112 ]]; then
+              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-app-browsers', 'milmove-cypress', 'milmove-infra-tf112', 'milmove-infra-tf104'; these are meaningful tags."
               exit 1
             fi
       - run:
@@ -44,17 +44,13 @@ jobs:
               docker tag  milmove/circleci-docker:milmove-cypress milmove/circleci-docker:milmove-cypress-$tag
               docker push milmove/circleci-docker:milmove-cypress-$tag
 
-              # milmove-infra-tf15
-              docker tag  milmove/circleci-docker:milmove-infra-tf15 milmove/circleci-docker:milmove-infra-tf15-$tag
-              docker push milmove/circleci-docker:milmove-infra-tf15-$tag
-
-              # milmove-infra-tf103
-              docker tag  milmove/circleci-docker:milmove-infra-tf103 milmove/circleci-docker:milmove-infra-tf103-$tag
-              docker push milmove/circleci-docker:milmove-infra-tf103-$tag
-
               # milmove-infra-tf104
               docker tag  milmove/circleci-docker:milmove-infra-tf104 milmove/circleci-docker:milmove-infra-tf104-$tag
               docker push milmove/circleci-docker:milmove-infra-tf104-$tag
+
+              # milmove-infra-tf112
+              docker tag  milmove/circleci-docker:milmove-infra-tf112 milmove/circleci-docker:milmove-infra-tf112-$tag
+              docker push milmove/circleci-docker:milmove-infra-tf112-$tag
 
               # milmove-atlantis
               docker tag  milmove/circleci-docker:milmove-atlantis milmove/circleci-docker:milmove-atlantis-$tag
@@ -67,8 +63,7 @@ jobs:
               docker push milmove/circleci-docker:milmove-app
               docker push milmove/circleci-docker:milmove-app-browsers
               docker push milmove/circleci-docker:milmove-cypress
-              docker push milmove/circleci-docker:milmove-infra-tf15
-              docker push milmove/circleci-docker:milmove-infra-tf103
               docker push milmove/circleci-docker:milmove-infra-tf104
+              docker push milmove/circleci-docker:milmove-infra-tf112
               docker push milmove/circleci-docker:milmove-atlantis
             fi
