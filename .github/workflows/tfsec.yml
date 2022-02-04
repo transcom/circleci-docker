@@ -26,6 +26,7 @@ jobs:
         run: |
           curl -sL https://github.com/aquasecurity/tfsec/releases/download/v${NEW_VERSION}/tfsec-linux-amd64 --output "shafile"
           echo ::set-output name=new_sha256sum::$(sha256sum shafile | cut -d' ' -f 1)
+      - run: echo ${{ steps.checksum.outputs.new_sha256sum }}
       - name: Change release version in Dockerfile
         if: ${{ steps.get-versions.outputs.release_tag != steps.get-versions.outputs.current_tag }}
         id: update-version
