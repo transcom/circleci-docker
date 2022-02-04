@@ -1,6 +1,8 @@
 name: Get latest tfsec version
 
-on: [push]
+on:
+  push:
+    branches: [master,  mb-11440-tfsec-updater]
 
 jobs:
   update-tfsec:
@@ -16,13 +18,6 @@ jobs:
         run: |
           echo ::set-output name=current_tag::$(grep TFSEC_VERSION $CURRENT_IMAGE_DIRECTORY/Dockerfile | head -1 | cut -d'=' -f 2)
           echo ::set-output name=release_tag::$(curl -sL https://api.github.com/repos/aquasecurity/tfsec/releases/latest | jq -r ".tag_name[1:] | tostring")
-      - name: Test echo
-        env:
-          OLD_VERSION: ${{ steps.get-versions.outputs.current_tag }}
-          NEW_VERSION: ${{ steps.get-versions.outputs.release_tag }}
-        run: |
-          echo $OLD_VERSION
-          echo $NEW_VERSION
       - name: Change release version in Dockerfile
         if: ${{ steps.get-versions.outputs.release_tag != steps.get-versions.outputs.current_tag }}
         id: update-version
