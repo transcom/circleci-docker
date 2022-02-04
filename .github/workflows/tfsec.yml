@@ -24,7 +24,7 @@ jobs:
         env:
           NEW_VERSION: ${{ steps.get-versions.outputs.release_tag }}
         run: |
-          curl -sL https://github.com/aquasecurity/tfsec/releases/download/$NEW_VERSION/tfsec-linux-amd64
+          curl -sL https://github.com/aquasecurity/tfsec/releases/download/v${NEW_VERSION}/tfsec-linux-amd64
           sha256sum tfsec-linux-amd64
       - name: Change release version in Dockerfile
         if: ${{ steps.get-versions.outputs.release_tag != steps.get-versions.outputs.current_tag }}
