@@ -1,8 +1,8 @@
 name: Get latest tfsec version
 
-on:
-  schedule: 
-    - cron: '20 30 * * *'
+on: push
+  # schedule: 
+  #   - cron: '20 30 * * *'
 
 jobs:
   update-tfsec:
@@ -18,6 +18,14 @@ jobs:
         run: |
           echo ::set-output name=current_tag::$(grep TFSEC_VERSION $CURRENT_IMAGE_DIRECTORY/Dockerfile | head -1 | cut -d'=' -f 2)
           echo ::set-output name=release_tag::$(curl -sL https://api.github.com/repos/aquasecurity/tfsec/releases/latest | jq -r ".tag_name[1:]")
+      - name: Get sha256sum if applicable
+        if: ${{ steps.get-versions.outputs.release_tag != steps.get-versions.outputs.current_tag }}
+        id: checksum
+        env:
+          NEW_VERSION: ${{ steps.get-versions.outputs.release_tag }}
+        run: |
+          curl -sL https://github.com/aquasecurity/tfsec/releases/download/$NEW_VERSION/tfsec-linux-amd64
+          sha256sum tfsec-linux-amd64
       - name: Change release version in Dockerfile
         if: ${{ steps.get-versions.outputs.release_tag != steps.get-versions.outputs.current_tag }}
         id: update-version
@@ -42,7 +50,7 @@ jobs:
           token: ${{ secrets.ROBOT_MYMOVE_TOKEN }}
           commit-message: Update tfsec to new version
           author: ${GITHUB_ACTOR_NAME} <${GITHUB_ACTOR_EMAIL}>
-          branch: new-tfsec-version-${{ steps.get-versions.outputs.release_tag }}
+          branch: seeifwecangetsha-${{ steps.get-versions.outputs.release_tag }}
           delete-branch: true
           title: Update tfsec Version to ${{ steps.get-versions.outputs.release_tag }}
           body: |
