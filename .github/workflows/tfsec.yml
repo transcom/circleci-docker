@@ -1,8 +1,8 @@
 name: Get latest tfsec version
 
-on: push
-  # schedule: 
-  #   - cron: '13 00 * * *'
+on:
+  schedule: 
+    - cron: '13 00 * * *'
 
 jobs:
   update-tfsec:
@@ -54,7 +54,7 @@ jobs:
           token: ${{ secrets.ROBOT_MYMOVE_TOKEN }}
           commit-message: Update tfsec to new version
           author: ${GITHUB_ACTOR_NAME} <${GITHUB_ACTOR_EMAIL}>
-          branch: test-the-team-function-tfsec-update-${{ steps.get-versions.outputs.release_tag }}
+          branch: tfsec-update-${{ steps.get-versions.outputs.release_tag }}
           delete-branch: true
           title: Update tfsec Version to ${{ steps.get-versions.outputs.release_tag }}
           body: |
