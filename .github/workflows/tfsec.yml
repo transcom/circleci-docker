@@ -1,0 +1,21 @@
+name: Get latest tfsec version
+
+on: [push]
+
+jobs:
+  update-tfsec:
+    runs-on: ubuntu-latest
+    env:
+      CURRENT_IMAGE_DIRECTORY: 'milmove-infra-tf112'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set release version and current version variables
+        id: get-versions
+        run: |
+          echo ::set-output name=current_tag::$(grep TFSEC_VERSION ${{ CURRENT_IMAGE_DIRECTORY }}/Dockerfile | cut -d'=' -f 2 | sed -e 's/^"//' -e 's/"$//')
+      - name: Test echo
+        env:
+          OLD_VERSION: ${{ steps.get-versions.outputs.current_tag }}
+        run: echo $OLD_VERSION
