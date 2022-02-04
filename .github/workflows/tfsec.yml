@@ -14,7 +14,7 @@ jobs:
       - name: Set release version and current version variables
         id: get-versions
         run: |
-          echo ::set-output name=current_tag::$(grep TFSEC_VERSION ${{ CURRENT_IMAGE_DIRECTORY }}/Dockerfile | cut -d'=' -f 2 | sed -e 's/^"//' -e 's/"$//')
+          echo ::set-output name=current_tag::$(grep TFSEC_VERSION $CURRENT_IMAGE_DIRECTORY/Dockerfile | cut -d'=' -f 2 | sed -e 's/^"//' -e 's/"$//')
       - name: Test echo
         env:
           OLD_VERSION: ${{ steps.get-versions.outputs.current_tag }}
