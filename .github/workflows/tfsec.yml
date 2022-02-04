@@ -24,9 +24,13 @@ jobs:
         env:
           NEW_VERSION: ${{ steps.get-versions.outputs.release_tag }}
         run: |
+          echo ::set-output name=current_sha256sum::$(grep TFSEC_SHA256SUM $CURRENT_IMAGE_DIRECTORY/Dockerfile | head -1 | cut -d'=' -f 2)
           curl -sL https://github.com/aquasecurity/tfsec/releases/download/v${NEW_VERSION}/tfsec-linux-amd64 --output "shafile"
-          echo ::set-output name=new_sha256sum::$(sha256sum shafile | cut -d' ' -f 1)
-      - run: echo ${{ steps.checksum.outputs.new_sha256sum }}
+          echo ::set-output name=release_sha256sum::$(sha256sum shafile | cut -d' ' -f 1)
+      - name: check the sums are right
+        run: |
+          echo ${{ steps.checksum.outputs.current_sha256sum }}
+          echo ${{ steps.checksum.outputs.release_sha256sum }}
       - name: Change release version in Dockerfile
         if: ${{ steps.get-versions.outputs.release_tag != steps.get-versions.outputs.current_tag }}
         id: update-version
