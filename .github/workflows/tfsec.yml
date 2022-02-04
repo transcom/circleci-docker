@@ -2,7 +2,7 @@ name: Get latest tfsec version
 
 on:
   schedule: 
-    - cron: '21 40 * * *'
+    - cron: '40 21 * * *'
 
 jobs:
   update-tfsec:
