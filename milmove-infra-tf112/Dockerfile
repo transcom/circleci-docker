@@ -7,7 +7,7 @@ FROM milmove/circleci-docker:base
 USER root
 
 # install terraform
-ARG TERRAFORM_VERSION=1.1.2
+ARG TERRAFORM_VERSION=1.1.3
 COPY sigs/hashicorp_pgp.key /tmp/hashicorp_pgp.key
 RUN gpg --import /tmp/hashicorp_pgp.key
 RUN set -ex && cd ~ \
@@ -21,7 +21,7 @@ RUN set -ex && cd ~ \
 
 # install terraform-docs
 ARG TERRAFORM_DOCS_VERSION=0.16.0
-ARG TERRAFORM_DOCS_SHA256SUM=328c16cd6552b3b5c4686b8d945a2e2e18d2b8145b6b66129cd5491840010182
+ARG TERRAFORM_DOCS_SHA256SUM=328c16cd6552b3b5c4686b8d945a2e2e18d2b8145b6b66129cd549184001.1.3
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz \
   && [ $(sha256sum terraform-docs-v${TERRAFORM_DOCS_VERSION}-linux-amd64.tar.gz | cut -f1 -d' ') = ${TERRAFORM_DOCS_SHA256SUM} ] \
@@ -29,8 +29,8 @@ RUN set -ex && cd ~ \
   && chmod 755 /usr/local/bin/terraform-docs
 
 #install tfsec
-ARG TFSEC_VERSION=1.1.2
-ARG TFSEC_SHA256SUM=e47bbbcfdc37f8967ea253618b33a128cd1faeab5e21105f0dc0bb69ab08d51e
+ARG TFSEC_VERSION=1.1.3
+ARG TFSEC_SHA256SUM=c58239548d7b6d943f760cf2ef8db1ab8247c0c7b957a46c01f61d81775fac59
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
