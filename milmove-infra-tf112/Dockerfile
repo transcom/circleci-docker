@@ -29,8 +29,8 @@ RUN set -ex && cd ~ \
   && chmod 755 /usr/local/bin/terraform-docs
 
 #install tfsec
-ARG TFSEC_VERSION=1.1.2
-ARG TFSEC_SHA256SUM=e47bbbcfdc37f8967ea253618b33a128cd1faeab5e21105f0dc0bb69ab08d51e
+ARG TFSEC_VERSION=1.1.3
+ARG TFSEC_SHA256SUM=c58239548d7b6d943f760cf2ef8db1ab8247c0c7b957a46c01f61d81775fac59
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
   && [ $(sha256sum tfsec-linux-amd64 | cut -f1 -d' ') = ${TFSEC_SHA256SUM} ] \
