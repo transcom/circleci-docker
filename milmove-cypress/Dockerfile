@@ -7,6 +7,7 @@ USER root
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
+# https://docs.cypress.io/guides/getting-started/installing-cypress#Ubuntu-Debian
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Install chrome deps via apt packages \
