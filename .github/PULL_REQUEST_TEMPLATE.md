@@ -14,7 +14,7 @@ for clarity).
 - [CircleCI](https://github.com/CircleCI-Public/circleci-cli/releases)
 - [ecs-service-logs](https://github.com/trussworks/ecs-service-logs/releases)
 - [find-guardduty-user](https://github.com/trussworks/find-guardduty-user/releases)
-- [golang](https://golang.org/doc/devel/release.html)
+- [golang](https://go.dev/doc/devel/release)
 - [Google Chrome](https://chromereleases.googleblog.com/)
 - [shellcheck](https://github.com/koalaman/shellcheck/releases)
 - [go-bindata](https://github.com/kevinburke/go-bindata/releases)
