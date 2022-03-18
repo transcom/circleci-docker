@@ -1,7 +1,7 @@
 name: Get latest tfsec version
 
 on:
-  schedule: 
+  schedule:
     - cron: '0 14 * * *'
 
 jobs:
