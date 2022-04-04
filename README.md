@@ -43,7 +43,7 @@ The base image is the absolute minimum of shared dependencies across all images
 
 In addition to the Base Image this contains:
 
-* [golang](https://golang.org/)
+* [golang](https://go.dev/)
 * [go-bindata](https://github.com/kevinburke/go-bindata)
 * [go-swagger](https://github.com/go-swagger/go-swagger)
 * [chamber](https://github.com/segmentio/chamber)
@@ -72,7 +72,7 @@ The code for [milmove/circleci-docker:milmove-orders](https://github.com/transco
 
 In addition to the Base Image this contained:
 
-* [golang](https://golang.org/)
+* [golang](https://go.dev/)
 * [go-swagger](https://github.com/go-swagger/go-swagger)
 * [chamber](https://github.com/segmentio/chamber)
 * Apt Packages
