@@ -18,7 +18,9 @@ RUN set -ex \
 # Install Python3 for Lambdas
 RUN apk add --no-cache python3
 
-RUN git config --global --add safe.directory *
+RUN git config --global --add safe.directory "*"
+
+RUN cat .gitconfig
 
 LABEL name="atlantis"
 
