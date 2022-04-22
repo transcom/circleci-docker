@@ -18,6 +18,8 @@ RUN set -ex \
 # Install Python3 for Lambdas
 RUN apk add --no-cache python3
 
+RUN git config --global --add safe.directory /home/atlantis/.atlantis/repos/transcom/transcom-infrasec-com/
+
 LABEL name="atlantis"
 
 ENV DEFAULT_TERRAFORM_VERSION=1.1.2
