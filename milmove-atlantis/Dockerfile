@@ -18,10 +18,9 @@ RUN set -ex \
 # Install Python3 for Lambdas
 RUN apk add --no-cache python3
 
-RUN git config --global --add safe.directory "*"
-
 LABEL name="atlantis"
 
 ENV DEFAULT_TERRAFORM_VERSION=1.1.2
+ENV GIT_CEILING_DIRECTORIES="/home/atlantis/.atlantis/repos/transcom/transcom-infrasec-com"
 
 EXPOSE 4141
