@@ -7,7 +7,7 @@ FROM milmove/circleci-docker:base
 USER root
 
 # install terraform
-ARG TERRAFORM_VERSION=1.1.2
+ARG TERRAFORM_VERSION=1.1.9
 COPY sigs/hashicorp_pgp.key /tmp/hashicorp_pgp.key
 RUN gpg --import /tmp/hashicorp_pgp.key
 RUN set -ex && cd ~ \
