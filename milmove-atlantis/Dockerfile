@@ -1,4 +1,4 @@
-FROM runatlantis/atlantis:v0.18.1
+FROM runatlantis/atlantis:v0.18.4
 # This image installs this ^----- particular version of atlantis
 # at /usr/local/bin/atlantis and several versions of terraform.
 # See: https://github.com/runatlantis/atlantis/releases and
