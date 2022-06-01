@@ -59,7 +59,7 @@ RUN set -ex && cd ~ \
   # This is so we can pin to specific Node versions
   # See https://github.com/nodesource/distributions/issues/33#issuecomment-337767815
   # See https://deb.nodesource.com/node_16.x/pool/main/n/nodejs/ for list of packages
-  && curl -o nodejs.deb https://deb.nodesource.com/node_16.x/pool/main/n/nodejs/nodejs_16.15.0-deb-1nodesource1_arm64.deb \
+  && curl -o nodejs.deb https://deb.nodesource.com/node_16.x/pool/main/n/nodejs/nodejs_16.15.0-deb-1nodesource1_amd64.deb \
   && dpkg -i ./nodejs.deb \
   && rm nodejs.deb \
   && : Add Yarn \
