@@ -28,6 +28,8 @@ RUN set -ex && cd ~ \
   libxss1 \
   xdg-utils \
   xvfb \
+  libnspr4 \
+  libnss3 \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
