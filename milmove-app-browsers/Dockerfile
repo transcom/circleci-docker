@@ -11,25 +11,23 @@ ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Install chrome deps via apt packages \
   && apt-get -qq update \
-  && apt-get -qq -y install --no-install-recommends \
-    fonts-liberation \
-    libappindicator3-1 \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libatspi2.0-0 \
-    libcups2 \
-    libdbus-1-3 \
-    libgbm1 \
-    libgtk-3-0 \
-    libnspr4 \
-    libnss3 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxi6 \
-    libxrandr2 \
-    libxtst6 \
-    xdg-utils \
+  && apt-get -qq -y install --no-install-recommends --no-upgrade \
+  fonts-liberation \
+  libappindicator3-1 \
+  libasound2 \
+  libatk-bridge2.0-0 \
+  libatspi2.0-0 \
+  libcairo2 \
+  libcups2 \
+  libgbm1 \
+  libgdk-pixbuf2.0-0 \
+  libgtk-3-0 \
+  libpango-1.0-0 \
+  libpangocairo-1.0-0 \
+  libxcursor1 \
+  libxss1 \
+  xdg-utils \
+  xvfb \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
