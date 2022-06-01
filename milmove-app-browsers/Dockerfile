@@ -11,37 +11,38 @@ ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Install chrome deps via apt packages \
   && apt-get -qq update \
-  && apt-get -qq -y install --no-install-recommends \
-    fonts-liberation \
-    libappindicator3-1 \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libatspi2.0-0 \
-    libcups2 \
-    libdbus-1-3 \
-    libgbm1 \
-    libgtk-3-0 \
-    libnspr4 \
-    libnss3 \
-    libxcomposite1 \
-    libxcursor1 \
-    libxi6 \
-    libxrandr2 \
-    libxtst6 \
-    xdg-utils \
+  && apt-get -qq -y install --no-install-recommends --no-upgrade \
+  fonts-liberation \
+  libappindicator3-1 \
+  libasound2 \
+  libatk-bridge2.0-0 \
+  libatspi2.0-0 \
+  libcairo2 \
+  libcups2 \
+  libgbm1 \
+  libgdk-pixbuf2.0-0 \
+  libgtk-3-0 \
+  libpango-1.0-0 \
+  libpangocairo-1.0-0 \
+  libxcursor1 \
+  libxss1 \
+  xdg-utils \
+  xvfb \
+  libnspr4 \
+  libnss3 \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
 
 # install chrome
-# Use these instructions: https://github.com/CircleCI-Public/circleci-dockerfiles/blob/master/node/images/14.18.1-buster/browsers/Dockerfile
+# Use this Dockerfile as a base for borrowed commands:
+# https://github.com/CircleCI-Public/cimg-node/blob/main/16.15/browsers/Dockerfile
 
 RUN curl --silent --show-error --location --fail --retry 3 --output /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
   && (dpkg -i /tmp/google-chrome-stable_current_amd64.deb || apt-get -fy install)  \
   && rm -rf /tmp/google-chrome-stable_current_amd64.deb \
   && sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g' \
-    "/opt/google/chrome/google-chrome" \
+  "/opt/google/chrome/google-chrome" \
   && google-chrome --version
 
 RUN CHROME_VERSION="$(google-chrome --version)" \

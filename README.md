@@ -48,7 +48,7 @@ In addition to the Base Image this contains:
 * [go-swagger](https://github.com/go-swagger/go-swagger)
 * [chamber](https://github.com/segmentio/chamber)
 * Apt Packages
-  * [NodeJS](https://nodejs.org/en/) at version 14.x (required for supporting USWDS)
+  * [NodeJS](https://nodejs.org/en/) at version 16.x (required for supporting USWDS)
   * [Yarn](https://yarnpkg.com/)
   * postgresql-client
   * entr
