@@ -23,7 +23,6 @@ For the latest stable images:
 * `milmove/circleci-docker:latest`
 * `milmove/circleci-docker:base`
 * `milmove/circleci-docker:milmove-app`
-* `milmove/circleci-docker:milmove-app-browsers`
 * `milmove/circleci-docker:milmove-cypress`
 * `milmove/circleci-docker:milmove-infra-tf104`
 * `milmove/circleci-docker:milmove-atlantis`
@@ -96,7 +95,6 @@ docker containers. This is a bit tricky and involves manual work. Generally run 
 docker pull milmove/circleci-docker:latest
 docker pull milmove/circleci-docker:base
 docker pull milmove/circleci-docker:milmove-app
-docker pull milmove/circleci-docker:milmove-app-browsers
 docker pull milmove/circleci-docker:milmove-cypress
 docker pull milmove/circleci-docker:milmove-infra-tf104
 docker pull milmove/circleci-docker:milmove-atlantis

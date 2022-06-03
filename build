@@ -27,13 +27,6 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
 popd
 
 
-pushd milmove-app-browsers
-docker build --build-arg CACHE_APT="$CACHE_APT" \
-             --build-arg CACHE_PIP="$CACHE_PIP" \
-             -t milmove/circleci-docker:milmove-app-browsers \
-             .
-popd
-
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker:milmove-cypress \
