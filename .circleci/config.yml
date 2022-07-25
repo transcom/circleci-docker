@@ -51,6 +51,10 @@ jobs:
               # milmove-atlantis
               docker tag  milmove/circleci-docker:milmove-atlantis milmove/circleci-docker:milmove-atlantis-$tag
               docker push milmove/circleci-docker:milmove-atlantis-$tag
+
+              # milmove-db-export
+              docker tag milmove/circleci-docker:milmove-db-export milmove/circleci-docker:milmove-db-export-$tag
+              docker push milmove/circleci-docker:milmove-db-export-$tag
             done
 
             # push default tags on master
