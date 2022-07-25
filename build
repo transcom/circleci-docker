@@ -46,3 +46,9 @@ pushd milmove-atlantis
 docker build -t milmove/circleci-docker:milmove-atlantis \
              .
 popd
+
+
+pushd milmove-db-export
+docker build -t milmove/circleci-docker:milmove-db-export \
+             .
+popd

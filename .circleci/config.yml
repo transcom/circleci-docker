@@ -57,8 +57,8 @@ jobs:
               docker push milmove/circleci-docker:milmove-db-export-$tag
             done
 
-            # push default tags on master
-            if [[ $CIRCLE_BRANCH = master ]]; then
+            # push default tags on main
+            if [[ $CIRCLE_BRANCH = main ]]; then
               docker push milmove/circleci-docker
               docker push milmove/circleci-docker:milmove-app
               docker push milmove/circleci-docker:milmove-cypress
