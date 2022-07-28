@@ -1,6 +1,6 @@
 # Transcom CircleCI Docker Images
 
-[![CircleCI](https://circleci.com/gh/transcom/circleci-docker/tree/master.svg?style=svg)](https://circleci.com/gh/transcom/circleci-docker/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/transcom/circleci-docker/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/transcom/circleci-docker/tree/main)
 
 This repository manages the custom-built docker images for use with CircleCI and development. Each image contains the minimum necessary tools to run testing and development.
 
@@ -27,7 +27,7 @@ For the latest stable images:
 * `milmove/circleci-docker:milmove-infra-tf104`
 * `milmove/circleci-docker:milmove-atlantis`
 
-For static tags, use tags including the git hash. You can find the hashes in this repo, from the [CircleCI builds page](https://circleci.com/gh/milmove/circleci-docker/tree/master), or from the [Docker Hub tags](https://hub.docker.com/r/milmove/circleci-docker/tags/) page.
+For static tags, use tags including the git hash. You can find the hashes in this repo, from the [CircleCI builds page](https://circleci.com/gh/milmove/circleci-docker/tree/main), or from the [Docker Hub tags](https://hub.docker.com/r/milmove/circleci-docker/tags/) page.
 
 ### Base Image
 
