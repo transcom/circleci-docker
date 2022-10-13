@@ -44,7 +44,6 @@ In addition to the Base Image this contains:
 
 * [golang](https://go.dev/)
 * [go-bindata](https://github.com/kevinburke/go-bindata)
-* [go-swagger](https://github.com/go-swagger/go-swagger)
 * [chamber](https://github.com/segmentio/chamber)
 * Apt Packages
   * [NodeJS](https://nodejs.org/en/) at version 16.x (required for supporting USWDS)
@@ -72,7 +71,6 @@ The code for [milmove/circleci-docker:milmove-orders](https://github.com/transco
 In addition to the Base Image this contained:
 
 * [golang](https://go.dev/)
-* [go-swagger](https://github.com/go-swagger/go-swagger)
 * [chamber](https://github.com/segmentio/chamber)
 * Apt Packages
   * postgresql-client

@@ -29,16 +29,6 @@ RUN set -ex && cd ~ \
   && chmod 755 go-bindata-linux-amd64 \
   && mv go-bindata-linux-amd64 /usr/local/bin/go-bindata
 
-# install swagger
-ARG SWAGGER_VERSION=0.30.2
-ARG SWAGGER_SHA256SUM=767b79fdb84aaf0da67a24b358d7d3ff298788e27095255f1cae08057bde7508
-RUN set -ex && cd ~ \
-  && curl -sSLO https://github.com/go-swagger/go-swagger/releases/download/v${SWAGGER_VERSION}/swagger_linux_amd64 \
-  && [ $(sha256sum swagger_linux_amd64 | cut -f1 -d' ') = ${SWAGGER_SHA256SUM} ] \
-  && chmod 755 swagger_linux_amd64 \
-  && ls -alh swagger_linux_amd64 \
-  && mv swagger_linux_amd64 /usr/local/bin/swagger
-
 ARG ECS_SERVICE_LOGS_VERSION=0.3.0
 ARG ECS_SERVICE_LOGS_SHA256SUM=2803177477bb917a19fc89f36f4972af740f80d35380cbe2c97345bb6d109f8e
 RUN set -ex && cd ~ \

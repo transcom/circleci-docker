@@ -18,7 +18,6 @@ for clarity).
 - [Google Chrome](https://chromereleases.googleblog.com/)
 - [shellcheck](https://github.com/koalaman/shellcheck/releases)
 - [go-bindata](https://github.com/kevinburke/go-bindata/releases)
-- [go-swagger](https://github.com/go-swagger/go-swagger/releases)
 - [node 10.X](https://nodejs.org/en/about/releases/)
 - [pre-commit](https://github.com/pre-commit/pre-commit/releases)
 - [terraform-docs](https://github.com/segmentio/terraform-docs/releases)
