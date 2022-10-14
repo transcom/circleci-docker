@@ -67,6 +67,7 @@ RUN set -ex && cd ~ \
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Install apt packages \
+  && apt-get -qq update \
   && apt-get -qq -y install --no-install-recommends apt-transport-https groff less lsb-release \
   && : Cleanup \
   && apt-get clean \
