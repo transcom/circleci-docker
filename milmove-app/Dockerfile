@@ -20,15 +20,6 @@ RUN set -ex && cd ~ \
   && ln -s /usr/local/go/bin/* /usr/local/bin \
   && rm -v go${GO_VERSION}.linux-amd64.tar.gz
 
-# install go-bindata
-ARG GO_BINDATA_VERSION=3.22.0
-ARG GO_BINDATA_SHA256SUM=e5d620fef845756d4223969f847de95601e1091b577a24d7e8bf2a3edd80a804
-RUN set -ex && cd ~ \
-  && curl -sSLO https://github.com/kevinburke/go-bindata/releases/download/v${GO_BINDATA_VERSION}/go-bindata-linux-amd64 \
-  && [ $(sha256sum go-bindata-linux-amd64 | cut -f1 -d' ') = ${GO_BINDATA_SHA256SUM} ] \
-  && chmod 755 go-bindata-linux-amd64 \
-  && mv go-bindata-linux-amd64 /usr/local/bin/go-bindata
-
 ARG ECS_SERVICE_LOGS_VERSION=0.3.0
 ARG ECS_SERVICE_LOGS_SHA256SUM=2803177477bb917a19fc89f36f4972af740f80d35380cbe2c97345bb6d109f8e
 RUN set -ex && cd ~ \

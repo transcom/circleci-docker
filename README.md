@@ -43,7 +43,6 @@ The base image is the absolute minimum of shared dependencies across all images
 In addition to the Base Image this contains:
 
 * [golang](https://go.dev/)
-* [go-bindata](https://github.com/kevinburke/go-bindata)
 * [chamber](https://github.com/segmentio/chamber)
 * Apt Packages
   * [NodeJS](https://nodejs.org/en/) at version 16.x (required for supporting USWDS)

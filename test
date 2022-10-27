@@ -24,7 +24,6 @@ function test_milmove_app() {
   echo "Testing ${tag} Dockerfile"
 
   docker run -it "milmove/circleci-docker:${tag}" go version
-  docker run -it "milmove/circleci-docker:${tag}" go-bindata --version
   docker run -it "milmove/circleci-docker:${tag}" node --version
   docker run -it "milmove/circleci-docker:${tag}" yarn --version
   docker run -it "milmove/circleci-docker:${tag}" which entr

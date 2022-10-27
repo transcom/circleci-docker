@@ -60,7 +60,6 @@ function test_milmove_app() {
   echo "Comparing against ${tag} Dockerfile"
 
   compare_version "${tag}" go version
-  compare_version "${tag}" go-bindata --version
   compare_version "${tag}" node --version
   compare_version "${tag}" yarn --version
 }
