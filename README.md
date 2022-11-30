@@ -24,7 +24,7 @@ For the latest stable images:
 * `milmove/circleci-docker:base`
 * `milmove/circleci-docker:milmove-app`
 * `milmove/circleci-docker:milmove-cypress`
-* `milmove/circleci-docker:milmove-infra-tf104`
+* `milmove/circleci-docker:milmove-infra-tf132`
 * `milmove/circleci-docker:milmove-atlantis`
 
 For static tags, use tags including the git hash. You can find the hashes in this repo, from the [CircleCI builds page](https://circleci.com/gh/milmove/circleci-docker/tree/main), or from the [Docker Hub tags](https://hub.docker.com/r/milmove/circleci-docker/tags/) page.
@@ -93,7 +93,7 @@ docker pull milmove/circleci-docker:latest
 docker pull milmove/circleci-docker:base
 docker pull milmove/circleci-docker:milmove-app
 docker pull milmove/circleci-docker:milmove-cypress
-docker pull milmove/circleci-docker:milmove-infra-tf104
+docker pull milmove/circleci-docker:milmove-infra-tf132
 docker pull milmove/circleci-docker:milmove-atlantis
 
 ```

@@ -42,6 +42,11 @@ docker build -t milmove/circleci-docker:milmove-infra-tf112 \
              .
 popd
 
+pushd milmove-infra-tf132
+docker build -t milmove/circleci-docker:milmove-infra-tf132 \
+             .
+popd
+
 pushd milmove-atlantis
 docker build -t milmove/circleci-docker:milmove-atlantis \
              .

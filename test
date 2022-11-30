@@ -41,8 +41,8 @@ function test_milmove_cypress() {
   echo "Passed ${tag}"
 }
 
-function test_milmove_infra_tf104() {
-  tag=milmove-infra-tf104
+function test_milmove_infra_tf132() {
+  tag=milmove-infra-tf132
   echo "Testing ${tag} Dockerfile"
 
   docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
@@ -65,7 +65,7 @@ function test_milmove_infra_tf112() {
   echo "Passed ${tag}"
 }
 
-for tag in latest milmove-app milmove-cypress milmove-infra-tf104 milmove-infra-tf112; do
+for tag in latest milmove-app milmove-cypress milmove-infra-tf132 milmove-infra-tf112; do
   echo
   echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
   docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
@@ -83,8 +83,8 @@ for tag in latest milmove-app milmove-cypress milmove-infra-tf104 milmove-infra-
     milmove-infra-tf112)
       test_milmove_infra_tf112
     ;;
-    milmove-infra-tf104)
-      test_milmove_infra_tf104
+    milmove-infra-tf132)
+      test_milmove_infra_tf132
     ;;
 esac
 

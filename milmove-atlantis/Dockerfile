@@ -1,8 +1,10 @@
-FROM runatlantis/atlantis:v0.18.1
+FROM ghcr.io/runatlantis/atlantis:v0.20.1
 # This image installs this ^----- particular version of atlantis
 # at /usr/local/bin/atlantis and several versions of terraform.
 # See: https://github.com/runatlantis/atlantis/releases and
-#      https://hub.docker.com/r/runatlantis/atlantis/tags
+#      https://github.com/runatlantis/atlantis/pkgs/container/atlantis
+
+# Note: https://hub.docker.com/r/runatlantis/atlantis/tags was deprecated
 
 # Terraform version used can be controlled by setting
 # DEFAULT_TERRAFORM_VERSION environment variable in the container
@@ -21,6 +23,6 @@ RUN apk add --no-cache python3
 
 LABEL name="atlantis"
 
-ENV DEFAULT_TERRAFORM_VERSION=1.1.2
+ENV DEFAULT_TERRAFORM_VERSION=1.3.2
 
 EXPOSE 4141

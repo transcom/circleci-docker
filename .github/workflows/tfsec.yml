@@ -8,7 +8,7 @@ jobs:
   update-tfsec:
     runs-on: ubuntu-latest
     env:
-      CURRENT_IMAGE_DIRECTORY: 'milmove-infra-tf112'
+      CURRENT_IMAGE_DIRECTORY: 'milmove-infra-tf132'
     steps:
       - uses: actions/checkout@v2
         with:
