@@ -72,16 +72,15 @@ jobs:
       - run: echo "Hello from ARM!"
 
 workflows:
-  build:
-    when:
-      or:
-        - not:
-            equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
+  version: 2
+  build-containers:
     jobs:
-      - build
-
-  build-arm:
-    when:
-      equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
-    jobs:
-      - build-arm
+      - build:
+          filters:
+            branches:
+              ignore:
+                - rogeruiz/arm-architecture
+      - build-arm:
+          filters:
+            branches:
+              only: rogeruiz/arm-architecture
