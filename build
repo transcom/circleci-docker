@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
-set -x -eu -o pipefail
+set -x -e -o pipefail
 
-#
+# README: Allow for undefined variables since the first argument may be
+# undefined if not used.
+set +u
+if test "${1}" == "--arm-only"
+then
+  build_for_arm=true
+fi
+set -u
+
 # Note on Cache Busting and Build Args: only add `--build-arg` where
 # the dockerfile contains steps that require them.
 #
@@ -12,12 +20,13 @@ CACHE_APT=$(date '+%Y-%m-%d')
 # bust cache for pip when requirements.txt changes
 CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
 
+if [ -z ${build_for_arm} ]
+then
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
              -t milmove/circleci-docker \
              -t milmove/circleci-docker:base \
              .
-
 
 pushd milmove-app
 docker build --build-arg CACHE_APT="$CACHE_APT" \
@@ -46,3 +55,6 @@ pushd milmove-atlantis
 docker build -t milmove/circleci-docker:milmove-atlantis \
              .
 popd
+else
+  echo "Building for ARM architecture"
+fi
