@@ -62,3 +62,12 @@ jobs:
               docker push milmove/circleci-docker:milmove-infra-tf132
               docker push milmove/circleci-docker:milmove-atlantis
             fi
+
+workflows:
+  build:
+    when:
+      or:
+        - not:
+            equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
+    jobs:
+      - build
