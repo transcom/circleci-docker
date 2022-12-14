@@ -68,12 +68,8 @@ jobs:
     resource_class: arm.medium
     steps:
       - checkout
-      - when:
-          condition:
-            equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
-          steps:
-            - run: uname -a
-            - run: echo "Hello from ARM!"
+      - run: uname -a
+      - run: echo "Hello from ARM!"
 
 workflows:
   build:
