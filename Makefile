@@ -6,6 +6,10 @@ help: ## Print the help documentation
 build: ## Build the docker images
 	@./build
 
+.PHONY: build-arm
+build-arm: ## Build the docker images using the ARM architecture (CircleCI only)
+	@./build --arm-only
+
 .PHONY: test
 test: ## Build the docker images
 	@./test
