@@ -62,6 +62,18 @@ jobs:
               docker push milmove/circleci-docker:milmove-infra-tf132
               docker push milmove/circleci-docker:milmove-atlantis
             fi
+  build-arm:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - checkout
+      - when:
+          condition:
+            equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
+          steps:
+            - run: uname -a
+            - run: echo "Hello from ARM!"
 
 workflows:
   build:
@@ -71,3 +83,9 @@ workflows:
             equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
     jobs:
       - build
+
+  build-arm:
+    when:
+      equal: [ rogeruiz/arm-architecture, << pipeline.git.branch >> ]
+    jobs:
+      - build-arm
