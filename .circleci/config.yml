@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build-containers:
     machine: true
     steps:
       - checkout
@@ -62,3 +62,19 @@ jobs:
               docker push milmove/circleci-docker:milmove-infra-tf132
               docker push milmove/circleci-docker:milmove-atlantis
             fi
+
+workflows:
+  version: 2
+  build-containers:
+    jobs:
+      - build-containers:
+          filters:
+            branches:
+              # NOTE: These branches are ignored because we use them when
+              # building containers for the application and infrastructure.
+              ignore:
+                - latest
+                - milmove-app
+                - milmove-cypress
+                - milmove-infra-tf132
+                - milmove-infra-tf112
