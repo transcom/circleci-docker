@@ -4,6 +4,7 @@ set -x -e -o pipefail
 # README: Allow for undefined variables since the first argument may be
 # undefined if not used.
 set +u
+build_for_arm=false
 if test "${1}" == "--arm-only"
 then
   build_for_arm=true

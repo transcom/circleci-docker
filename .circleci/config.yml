@@ -92,8 +92,8 @@ workflows:
           filters:
             branches:
               ignore:
-                - /\.*arm-architecture\/.*/
+                - /.*arm-architecture.*/
       - build-arm:
           filters:
             branches:
-              only: /\.*arm-architecture\/.*/
+              only: /.*arm-architecture.*/
