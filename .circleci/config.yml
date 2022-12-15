@@ -68,8 +68,13 @@ jobs:
     resource_class: arm.medium
     steps:
       - checkout
-      - run: uname -a
-      - run: echo "Hello from ARM!"
+      - run:
+          name: Show architecture
+          command: uname -m
+      - run:
+          name: Show introduction
+          command: |
+            echo "Hello from ARM! I'm an experiment for now. Please refer to the ./README.md for more information."
 
 workflows:
   version: 2
