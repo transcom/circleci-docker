@@ -15,8 +15,10 @@ jobs:
           name: Login to Docker Hub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
+      - run: uname -a
+
       - run:
-          name: Build containers
+          name: Build x86_64 containers
           command: make build
 
       - run:
@@ -77,6 +79,10 @@ jobs:
             echo "Hello from ARM!"
             echo "I'm an experiment for now."
             echo "Please refer to the ./README.md for more information."
+      - run:
+          name: Build ARM containers
+          command: |
+            make build-arm
 
 workflows:
   version: 2

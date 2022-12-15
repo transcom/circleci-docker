@@ -56,5 +56,17 @@ docker build -t milmove/circleci-docker:milmove-atlantis \
              .
 popd
 else
-  echo "Building for ARM architecture"
+  pushd arm-arch
+  if test "$(uname -m)" == "aarch64"
+  then
+    docker build --build-arg CACHE_APT="$CACHE_APT" \
+                 --build-arg CACHE_PIP="$CACHE_PIP" \
+                 -t milmove/arm-circleci-docker \
+                 -t milmove/arm-circleci-docker:base \
+                 .
+    docker run --rm -t milmove/arm-circleci-docker:base uname -m
+  else
+    echo "Sorry, I don't run on architecture that's not aarch64"
+  fi
+  popd
 fi
