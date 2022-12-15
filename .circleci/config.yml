@@ -74,7 +74,9 @@ jobs:
       - run:
           name: Show introduction
           command: |
-            echo "Hello from ARM! I'm an experiment for now. Please refer to the ./README.md for more information."
+            echo "Hello from ARM!"
+            echo "I'm an experiment for now."
+            echo "Please refer to the ./README.md for more information."
 
 workflows:
   version: 2
