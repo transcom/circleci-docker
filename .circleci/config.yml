@@ -86,8 +86,8 @@ workflows:
           filters:
             branches:
               ignore:
-                - rogeruiz/arm-architecture
+                - /\.*arm-architecture\/.*/
       - build-arm:
           filters:
             branches:
-              only: rogeruiz/arm-architecture
+              only: /\.*arm-architecture\/.*/

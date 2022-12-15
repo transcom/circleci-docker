@@ -14,6 +14,46 @@ the public domain. In places where it is eligible for copyright, such as some fo
 this work is licensed under [the MIT License](https://opensource.org/licenses/MIT), the full text of which is included
 in the [LICENSE.txt](./LICENSE.txt) file in this repository.
 
+## Architecture
+
+This repository is currently building images for both x86_64 and ARM
+architectures. **The ARM architectures are highly experimental for now** and are
+only built if the branch matches a certain naming convention. The naming
+convention is below:
+
+* `github_username/arm-architecture`
+* `arm-architecture`
+* `arm-architecture-testing-stuff`
+
+The pattern the CircleCI filter is looking for is `arm-architecture` as long as
+your branch has this name, it can be used to build ARM-based Docker images. This
+aids in the building of Docker containers for the ARM architecture without the
+need for the engineer doing so to have an ARM-based macOS laptop.
+
+### Building for ARM on locally
+
+If you have an M1 or M2 Mac, then you can run the `make build-arm` target
+locally for local development. This method is undocumented so please update this
+section of the documentation if you have the ability to test using this path.
+Thank you in advance for your contributions to the documentation.
+
+### Building for ARM on CirleCI
+
+To build and experiment for ARM, you can edit the `build` file and ensure that
+your code only runs after the `else` statement. You can also find Docker build
+files in the `arm-arch/` directory for granular experimentation. Please reach
+out in #prac-engineering and tag either @ahobson or @rogeruiz for more
+information about this. If there's a need for it, create a Slack group in DP3
+Slack to tag more folks whom are interested in ARM Architecture.
+
+### Why are we concerned and experimenting with ARM Architecture
+
+There's a document in @rogeruiz's Confluence Space that is tracking the answer
+to this question. It's available for anyone with access to it to edit and
+collaborate on. Please use the document to collaborate on.
+
+[=> 💨 Speeding up the CI/CD process using ARM architecture and specific build files 🔒](https://dp3.atlassian.net/wiki/spaces/~721089227/pages/1968734312/Speeding+up+the+CI+CD+process+using+ARM+architecture+and+specific+build+files)
+
 ## Images
 
 Each image is specifically tailored.
