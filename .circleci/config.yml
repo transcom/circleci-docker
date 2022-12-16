@@ -20,6 +20,8 @@ jobs:
 
   build:
     machine: true
+      # TODO: This image is the ARM image, but can't be used yet.
+      # image: ubuntu-2204:2022.07.1
     steps:
       - checkout
       - run:

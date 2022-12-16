@@ -1,9 +1,27 @@
 #!/usr/bin/env bash
 set -x -eu -o pipefail
 
-#
+# TODO: This needs to be added to get multi-arch working
+# Required to build multi-architecture Docker images.
+# docker buildx create --use
+
 # Note on Cache Busting and Build Args: only add `--build-arg` where
 # the dockerfile contains steps that require them.
+#
+
+# TODO: This is happening here to loop through directories to ensure things get
+# build properly in loops rather than copy and paste.
+# #shellcheck disable=SC2010,SC2207
+# reserved_tags=( $(ls -d -- * | grep milmove ) latest )
+# for tag in "${reserved_tags[@]}"
+# do
+#   if test "${tag}" == "latest"
+#   then
+#     echo
+#   else
+#     echo
+#   fi
+# done
 #
 
 # bust cache for apt-get daily
@@ -11,6 +29,12 @@ CACHE_APT=$(date '+%Y-%m-%d')
 
 # bust cache for pip when requirements.txt changes
 CACHE_PIP=$(shasum -a 256 requirements.txt | cut -f1 -d' ')
+
+# TODO: This is the buildx build command that's needed for multi-arch.
+# docker buildx build --progress plain --platform linux/amd64,linux/arm64 --push
+# WARN: The above is a problem because it also does a `--push` and that means
+# we won't be able to test things with `make test` before pushing. This will
+# get figured out eventually.
 
 docker build --build-arg CACHE_APT="$CACHE_APT" \
              --build-arg CACHE_PIP="$CACHE_PIP" \
