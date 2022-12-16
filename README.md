@@ -14,6 +14,27 @@ the public domain. In places where it is eligible for copyright, such as some fo
 this work is licensed under [the MIT License](https://opensource.org/licenses/MIT), the full text of which is included
 in the [LICENSE.txt](./LICENSE.txt) file in this repository.
 
+## CI/CD
+
+This repository uses Workflows to build the containers. The main job is a
+`build` job for historical reasons. The workflows filter on certain branches
+that match the releases of the Docker images. Branches that get created in this
+repository with any of the following names will not build.
+
+* `latest`
+* `milmove-app`
+* `milmove-cypress`
+* `milmove-atlantis`
+* `milmove-cypress`
+* `milmove-infra-tf112`
+* `milmove-infra-tf132`
+
+The main workflow is named `build-containers` and runs `test-branch-name` to
+check if the name of the branch matches any of the name of the containers that
+get built. Take care naming your branches as if the `test-branch-name` job
+fails, it will not allow the `build` command to run which will not allow PRs to
+get merged in.
+
 ## Images
 
 Each image is specifically tailored.
@@ -24,6 +45,7 @@ For the latest stable images:
 * `milmove/circleci-docker:base`
 * `milmove/circleci-docker:milmove-app`
 * `milmove/circleci-docker:milmove-cypress`
+* `milmove/circleci-docker:milmove-infra-tf112`
 * `milmove/circleci-docker:milmove-infra-tf132`
 * `milmove/circleci-docker:milmove-atlantis`
 

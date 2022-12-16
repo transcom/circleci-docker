@@ -1,16 +1,27 @@
 version: 2
 jobs:
-  build:
+  test-branch-name:
     machine: true
     steps:
       - checkout
       - run:
           name: Check for reserved branch names
           command: |
-            if [[ $CIRCLE_BRANCH = latest || $CIRCLE_BRANCH = milmove-app || $CIRCLE_BRANCH = milmove-cypress || $CIRCLE_BRANCH = milmove-infra-tf132 || $CIRCLE_BRANCH = milmove-infra-tf112 ]]; then
-              echo "Don't use a branch named 'latest', 'milmove-app', 'milmove-cypress', 'milmove-infra-tf112', 'milmove-infra-tf132'; these are meaningful tags."
-              exit 1
-            fi
+            important_branches=( $(ls -d * | grep milmove) latest )
+            for branch in "${important_branches[@]}"
+            do
+              if test "${CIRCLE_BRANCH}" == ${branch}
+              then
+                echo "Don't use meaningful tags for a branch name!"
+                echo "Don't use a branch named ${branch}."
+                exit 1
+              fi
+            done
+
+  build:
+    machine: true
+    steps:
+      - checkout
       - run:
           name: Login to Docker Hub
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -62,3 +73,23 @@ jobs:
               docker push milmove/circleci-docker:milmove-infra-tf132
               docker push milmove/circleci-docker:milmove-atlantis
             fi
+
+workflows:
+  version: 2
+  build-containers:
+    jobs:
+      - test-branch-name
+      - build:
+          requires:
+            - test-branch-name
+          filters:
+            branches:
+              # NOTE: These branches are ignored because we use them when
+              # building containers for the application and infrastructure.
+              ignore:
+                - latest
+                - milmove-app
+                - milmove-atlantis
+                - milmove-cypress
+                - milmove-infra-tf132
+                - milmove-infra-tf112
