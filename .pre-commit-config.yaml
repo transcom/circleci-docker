@@ -16,3 +16,10 @@ repos:
     hooks:
     -   id: dockerfilelint
         stages: [commit]
+
+- repo: https://github.com/zahorniak/pre-commit-circleci.git
+  rev: v0.6
+  hooks:
+    - id: circleci_validate
+      args:
+        - .circleci/config.yml
