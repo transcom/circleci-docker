@@ -50,11 +50,10 @@ In addition to the Base Image this contains:
   * postgresql-client
   * entr
 
-### MilMove App Browsers
+### MilMove App Browsers (_deleted_)
 
-In addition to the MilMove App Image this contains:
-
-* [Chrome](https://www.google.com/chrome/)
+The `Dockerfile` for `milmove/circleci-docker:milmove-app-browsers` was deleted
+in [June 2022 in PR #270](https://github.com/transcom/circleci-docker/pull/270).
 
 ### MilMove Infra
 
