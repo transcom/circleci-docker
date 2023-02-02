@@ -17,7 +17,7 @@ for clarity).
 - [golang](https://go.dev/doc/devel/release)
 - [Google Chrome](https://chromereleases.googleblog.com/)
 - [shellcheck](https://github.com/koalaman/shellcheck/releases)
-- [node 10.X](https://nodejs.org/en/about/releases/)
+- [Node.js](https://nodejs.org/en/about/releases/)
 - [pre-commit](https://github.com/pre-commit/pre-commit/releases)
 - [terraform-docs](https://github.com/segmentio/terraform-docs/releases)
 - [terraform](https://github.com/hashicorp/terraform/releases)

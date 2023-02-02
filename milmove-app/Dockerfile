@@ -36,11 +36,11 @@ ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
-  && : Add Node 16.19.0 \
+  && : Add Node 18.13.0 \
   # This is so we can pin to specific Node versions
   # See https://github.com/nodesource/distributions/issues/33#issuecomment-337767815
-  # See https://deb.nodesource.com/node_16.x/pool/main/n/nodejs/ for list of packages
-  && curl -o nodejs.deb https://deb.nodesource.com/node_16.x/pool/main/n/nodejs/nodejs_16.19.0-deb-1nodesource1_amd64.deb \
+  # See https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/ for list of packages
+  && curl -o nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/nodejs_18.13.0-deb-1nodesource1_amd64.deb \
   && dpkg -i ./nodejs.deb \
   && rm nodejs.deb \
   && : Add Yarn \

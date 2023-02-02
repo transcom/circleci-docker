@@ -67,7 +67,7 @@ In addition to the Base Image this contains:
 * [golang](https://go.dev/)
 * [chamber](https://github.com/segmentio/chamber)
 * Apt Packages
-  * [NodeJS](https://nodejs.org/en/) at version 16.x (required for supporting USWDS)
+  * [NodeJS](https://nodejs.org/en/) at version 18.x (required for supporting USWDS)
   * [Yarn](https://yarnpkg.com/)
   * postgresql-client
   * entr
