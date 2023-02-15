@@ -1,5 +1,5 @@
 # Added platform team as code owners so that PRs do not get missed
-Dockerfile @transcom/truss-platform-team
+Dockerfile @transcom/truss-platform-team @transcom/truss-is3 @transcom/truss-sr-eng
 /milmove-atlantis @transcom/truss-platform-team
 # For tf, we maintain one old version plus the current
 /milmove-infra-tf112 @transcom/truss-platform-team
