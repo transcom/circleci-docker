@@ -36,43 +36,7 @@ jobs:
 
       - run:
           name: Release container
-          command: |
-            shopt -s extglob
-            for tag in $CIRCLE_SHA1 ${CIRCLE_BRANCH//+([^A-Za-z0-9-.])/-}; do
-              # latest
-              docker tag  milmove/circleci-docker milmove/circleci-docker:$tag
-              docker push milmove/circleci-docker:$tag
-
-              # milmove-app
-              docker tag  milmove/circleci-docker:milmove-app milmove/circleci-docker:milmove-app-$tag
-              docker push milmove/circleci-docker:milmove-app-$tag
-
-              # milmove-cypress
-              docker tag  milmove/circleci-docker:milmove-cypress milmove/circleci-docker:milmove-cypress-$tag
-              docker push milmove/circleci-docker:milmove-cypress-$tag
-
-              # milmove-infra-tf112
-              docker tag  milmove/circleci-docker:milmove-infra-tf112 milmove/circleci-docker:milmove-infra-tf112-$tag
-              docker push milmove/circleci-docker:milmove-infra-tf112-$tag
-
-              # milmove-infra-tf132
-              docker tag  milmove/circleci-docker:milmove-infra-tf132 milmove/circleci-docker:milmove-infra-tf132-$tag
-              docker push milmove/circleci-docker:milmove-infra-tf132-$tag
-
-              # milmove-atlantis
-              docker tag  milmove/circleci-docker:milmove-atlantis milmove/circleci-docker:milmove-atlantis-$tag
-              docker push milmove/circleci-docker:milmove-atlantis-$tag
-            done
-
-            # push default tags on main
-            if [[ $CIRCLE_BRANCH = main ]]; then
-              docker push milmove/circleci-docker
-              docker push milmove/circleci-docker:milmove-app
-              docker push milmove/circleci-docker:milmove-cypress
-              docker push milmove/circleci-docker:milmove-infra-tf112
-              docker push milmove/circleci-docker:milmove-infra-tf132
-              docker push milmove/circleci-docker:milmove-atlantis
-            fi
+          command: make release
 
 workflows:
   version: 2
