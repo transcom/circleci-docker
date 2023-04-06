@@ -50,8 +50,9 @@ RUN set -ex && cd ~ \
 
 # Install scripts
 COPY scripts/do-exclusively /usr/local/bin/do-exclusively
-RUN chmod 755 /usr/local/bin/do-exclusively \
-  && chown root:root /usr/local/bin/do-exclusively
+COPY scripts/check-tls-pair /usr/local/bin/check-tls-pair
+RUN chmod 755 /usr/local/bin/do-exclusively /usr/local/bin/check-tls-pair \
+  && chown root:root /usr/local/bin/do-exclusively /usr/local/bin/check-tls-pair
 
 # install pip packages
 ARG CACHE_PIP
