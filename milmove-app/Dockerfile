@@ -46,13 +46,18 @@ RUN set -ex && cd ~ \
   && : Add Yarn \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && : Install postgresql-12 repo \
+  && sh -c 'echo "deb http://apt-archive.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-archive main" > /etc/apt/sources.list.d/pgdg.list' \
+  && curl -sSLf -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add  \
   && apt-get -qq update \
+  && : Install pinned postgresql packages \
+  && apt-get -y install --no-install-recommends \
+    postgresql-client-14=14.7-1.pgdg20.04+1 \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
+  && apt-get -qq -y install --no-install-recommends nodejs yarn entr \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
-
 USER circleci
 
 # Create GOPATH, needed for swagger, needs to be owned by circleci user
