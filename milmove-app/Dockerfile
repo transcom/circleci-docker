@@ -1,5 +1,9 @@
 # CircleCI docker image to run within
-FROM milmove/circleci-docker:base
+# Use new convience images, use ubuntu 20.04 because postgresql does
+# not provide version 12.11 for newer versions. We can upgrade the
+# base image when we are on newer versions of postgresql in production
+FROM cimg/base:2023.01-20.04
+
 # Base image uses "circleci", to avoid using `sudo` run as root user
 USER root
 
@@ -28,6 +32,16 @@ RUN set -ex && cd ~ \
   && tar -C /usr/local/bin -xzf ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz \
   && rm -v ecs-service-logs_${ECS_SERVICE_LOGS_VERSION}_Linux_x86_64.tar.gz
 
+# install shellcheck
+ARG SHELLCHECK_VERSION=0.7.1
+ARG SHELLCHECK_SHA256SUM=64f17152d96d7ec261ad3086ed42d18232fcb65148b44571b564d688269d36c8
+RUN set -ex && cd ~ \
+  && curl -sSLO https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
+  && [ $(sha256sum shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz | cut -f1 -d' ') = ${SHELLCHECK_SHA256SUM} ] \
+  && tar xvfa shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
+  && mv shellcheck-v${SHELLCHECK_VERSION}/shellcheck /usr/local/bin \
+  && chown root:root /usr/local/bin/shellcheck \
+  && rm -vrf shellcheck-v${SHELLCHECK_VERSION} shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
 
 # apt-get project dependencies
 # Notes:
@@ -43,15 +57,31 @@ RUN set -ex && cd ~ \
   && curl -o nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/nodejs_18.13.0-deb-1nodesource1_amd64.deb \
   && dpkg -i ./nodejs.deb \
   && rm nodejs.deb \
-  && : Add Yarn \
+  && : Add postgresql apt sources \
+  && sh -c 'echo "deb http://apt-archive.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-archive main" > /etc/apt/sources.list.d/pgdg.list' \
+  && curl -sSLf -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+  && : Add Yarn apt sources \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get -qq update \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
+  && : postgresql-12 pinning version \
+  && : redis, no matter the version \
+  && : python3-pip for pre-commit \
+  && apt-get -qq -y install --no-install-recommends \
+    nodejs \
+    yarn \
+    entr \
+    postgresql-12=12.11-1.pgdg20.04+1 \
+    redis-server \
+    python3-pip \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
+
+# install exactly the version of pre-commit we want pinned now that we
+# have pip installed
+RUN pip install pre-commit==2.20.0
 
 USER circleci
 

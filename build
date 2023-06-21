@@ -32,6 +32,9 @@ docker build --build-arg CACHE_APT="$CACHE_APT" \
              -t milmove/circleci-docker:milmove-cypress \
              -f milmove-cypress/Dockerfile .
 
+docker build -t milmove/circleci-docker:milmove-playwright \
+             -f milmove-playwright/Dockerfile .
+
 pushd milmove-infra-tf112
 docker build -t milmove/circleci-docker:milmove-infra-tf112 \
              .
