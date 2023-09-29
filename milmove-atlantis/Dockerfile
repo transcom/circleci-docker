@@ -16,7 +16,7 @@ RUN set -ex \
     && apk update \
     && apk upgrade --no-cache \
     && rm -rf /var/cache/apk/* \
-    && git config --system --add safe.directory /home/atlantis/.atlantis/repos/transcom/transcom-infrasec-com
+    && git config --system --add safe.directory '*'
 
 # Install Python3 for Lambdas
 RUN apk add --no-cache python3
