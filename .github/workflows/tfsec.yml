@@ -43,7 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ROBOT_MYMOVE_TOKEN }}
           GITHUB_ACTOR_NAME: "robot-mymove"
-          GITHUB_ACTOR_EMAIL: "dp3-integrations+github@truss.works"
+          GITHUB_ACTOR_EMAIL: "milmovesysadmins@caci.com"
         run: |
           git config --global user.name "${GITHUB_ACTOR_NAME}"
           git config --global user.email "${GITHUB_ACTOR_EMAIL}"
@@ -60,4 +60,4 @@ jobs:
           body: |
             Automated update from tfsec version ${{ steps.get-versions.outputs.current_tag }} to version ${{ steps.get-versions.outputs.release_tag }}
             Release Notes: https://github.com/aquasecurity/tfsec/releases/tag/v${{ steps.get-versions.outputs.release_tag }}
-          team-reviewers: Truss-InfraSec
+          reviewers: josiahzimmerman-caci edwardharriscaci
