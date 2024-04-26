@@ -32,23 +32,23 @@ RUN set -ex && cd ~ \
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
+ARG SETUP_18_X_SHA256SUM="86a3bed32e7505046b574238810a2978b1d50be740ad13f18dc674b6e46af9a5"
+
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
   && : Add Node 18.13.0 \
-  # This is so we can pin to specific Node versions
-  # See https://github.com/nodesource/distributions/issues/33#issuecomment-337767815
-  # See https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/ for list of packages
-  && curl -o nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/nodejs_18.13.0-deb-1nodesource1_amd64.deb \
-  && dpkg -i ./nodejs.deb \
-  && rm nodejs.deb \
+  && curl -sSLO https://deb.nodesource.com/setup_18.x \
+  && echo "${SETUP_18_X_SHA256SUM} setup_18.x" | sha256sum -c - \
+  && bash setup_18.x \
+  && rm setup_18.x \
   && : Add Yarn \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get -qq update \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
+  && apt-get -qq -y install --no-install-recommends nodejs=18.13.0 yarn entr postgresql-client \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
