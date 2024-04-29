@@ -32,7 +32,7 @@ RUN set -ex && cd ~ \
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
-#ARG SETUP_18_X_SHA256SUM="86a3bed32e7505046b574238810a2978b1d50be740ad13f18dc674b6e46af9a5"
+ARG SETUP_18_X_SHA256SUM="86a3bed32e7505046b574238810a2978b1d50be740ad13f18dc674b6e46af9a5"
 
 ARG CACHE_APT
 RUN set -ex && cd ~ \
@@ -40,7 +40,7 @@ RUN set -ex && cd ~ \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
   && : Add Node 18.20.2 \
   && curl -sSLO https://deb.nodesource.com/setup_18.x \
- # && echo "${SETUP_18_X_SHA256SUM} setup_18.x" | sha256sum -c - \
+  && echo "${SETUP_18_X_SHA256SUM} setup_18.x" | sha256sum -c - \
   && bash setup_18.x \
   && rm setup_18.x \
   && : Add Yarn \
