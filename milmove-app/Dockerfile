@@ -51,7 +51,7 @@ RUN set -ex && cd ~ \
   && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
   && : Cleanup \
   && apt-get clean \
-  && rm -vrf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/*
 
 USER circleci
 
