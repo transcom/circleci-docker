@@ -38,7 +38,7 @@ ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
-  && : Add Node 18.13.0 \
+  && : Add Node 18.20.2 \
   && curl -sSLO https://deb.nodesource.com/setup_18.x \
   && echo "${SETUP_18_X_SHA256SUM} setup_18.x" | sha256sum -c - \
   && bash setup_18.x \
@@ -48,7 +48,7 @@ RUN set -ex && cd ~ \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get -qq update \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs=18.13.0 yarn entr postgresql-client \
+  && apt-get -qq -y install --no-install-recommends nodejs=18.20.2 yarn entr postgresql-client \
   && : Cleanup \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
