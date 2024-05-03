@@ -41,7 +41,7 @@ RUN set -ex && cd ~ \
   && rm -r awscliv2.zip awscliv2.sig aws
 
 ARG CHAMBER_VERSION=2.14.1
-ARG CHAMBER_SHA256SUM=947a997374dacf6a2133688a5a6e459dd1603c63c8c92cd10b1274eaa8e4cb66
+ARG CHAMBER_SHA256SUM=4b19a0ef87567626527e8927900b2e7c300015c5942c1e20d6446aed087489ee
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
   && [ $(sha256sum chamber-v${CHAMBER_VERSION}-linux-amd64 | cut -f1 -d' ') = ${CHAMBER_SHA256SUM} ] \
