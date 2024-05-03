@@ -46,17 +46,17 @@ RUN set -ex && cd ~ \
   && : Add Yarn \
   && curl -sSLf https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-  && : Install postgresql repo \
-  && sh -c 'echo "deb http://apt-archive.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-archive main" > /etc/apt/sources.list.d/pgdg.list' \
-  && curl -sSLf -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \  
-  && apt-get -qq update \
-  && : Install pinned postgresql packages \
-  && apt-get -y install --no-install-recommends \
-    postgresql-client-12=12.13-1.pgdg20.04+1 \
-    libpq5=12.15-1.pgdg20.04+1 \
-    libpq-dev=12.15-1.pgdg20.04+1 \  
-  && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr \
+  #&& : Install postgresql repo \
+  #&& sh -c 'echo "deb http://apt-archive.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-archive main" > /etc/apt/sources.list.d/pgdg.list' \
+  #&& curl -sSLf -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \  
+  #&& apt-get -qq update \
+  #&& : Install pinned postgresql packages \
+  #&& apt-get -y install --no-install-recommends \
+  #  postgresql-client-12=12.13-1.pgdg20.04+1 \
+  #  libpq5=12.15-1.pgdg20.04+1 \
+  #  libpq-dev=12.15-1.pgdg20.04+1 \  
+  #&& : Install apt packages \
+  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client\
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
