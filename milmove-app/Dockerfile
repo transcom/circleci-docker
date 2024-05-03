@@ -40,15 +40,23 @@ RUN set -ex && cd ~ \
   # This is so we can pin to specific Node versions
   # See https://github.com/nodesource/distributions/issues/33#issuecomment-337767815
   # See https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/ for list of packages
-  && curl -o nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/nodejs_18.13.0-deb-1nodesource1_amd64.deb \
+  && curl -sSLf -o nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/nodejs_18.13.0-deb-1nodesource1_amd64.deb \
   && dpkg -i ./nodejs.deb \
   && rm nodejs.deb \
   && : Add Yarn \
-  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && curl -sSLf https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && : Install postgresql repo \
+  && sh -c 'echo "deb http://apt-archive.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-archive main" > /etc/apt/sources.list.d/pgdg.list' \
+  && curl -sSLf -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
   && apt-get -qq update \
+  && : Install pinned postgresql packages \
+  && apt-get -y install --no-install-recommends \
+    postgresql-client-12=12.13-1.pgdg20.04+1 \
+    libpq5=12.15-1.pgdg20.04+1 \
+    libpq-dev=12.15-1.pgdg20.04+1 \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
+  && apt-get -qq -y install --no-install-recommends nodejs yarn entr \
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
