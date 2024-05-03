@@ -1,11 +1,11 @@
 # CircleCI docker image to run within
-FROM cimg/python:3.10.7-node
+FROM cimg/python:3.12.1-node
 # Base image uses "circleci", to avoid using `sudo` run as root user
 USER root
 
 # install shellcheck
-ARG SHELLCHECK_VERSION=0.7.1
-ARG SHELLCHECK_SHA256SUM=64f17152d96d7ec261ad3086ed42d18232fcb65148b44571b564d688269d36c8
+ARG SHELLCHECK_VERSION=0.10.0
+ARG SHELLCHECK_SHA256SUM=6c881ab0698e4e6ea235245f22832860544f17ba386442fe7e9d629f8cbedf87
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz \
   && [ $(sha256sum shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz | cut -f1 -d' ') = ${SHELLCHECK_SHA256SUM} ] \
@@ -15,8 +15,8 @@ RUN set -ex && cd ~ \
   && rm -vrf shellcheck-v${SHELLCHECK_VERSION} shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
 
 # install circleci cli
-ARG CIRCLECI_CLI_VERSION=0.1.15195
-ARG CIRCLECI_CLI_SHA256SUM=c3f4830767aa14b02bac2dbc188cada7ef2f00055b43210337806033a1ded4f4
+ARG CIRCLECI_CLI_VERSION=0.1.30549
+ARG CIRCLECI_CLI_SHA256SUM=649496a32305c539df9c66f737f74a8852dd73e53c14e7d95b77c0e2d7790d38
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/CircleCI-Public/circleci-cli/releases/download/v${CIRCLECI_CLI_VERSION}/circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && [ $(sha256sum circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz | cut -f1 -d' ') = ${CIRCLECI_CLI_SHA256SUM} ] \
@@ -28,7 +28,7 @@ RUN set -ex && cd ~ \
 
 # install awscliv2, disable default pager (less)
 ENV AWS_PAGER=""
-ARG AWSCLI_VERSION=2.1.38
+ARG AWSCLI_VERSION=2.15.43
 COPY sigs/awscliv2_pgp.key /tmp/awscliv2_pgp.key
 RUN gpg --import /tmp/awscliv2_pgp.key
 RUN set -ex && cd ~ \
@@ -40,7 +40,7 @@ RUN set -ex && cd ~ \
   && aws --version \
   && rm -r awscliv2.zip awscliv2.sig aws
 
-ARG CHAMBER_VERSION=2.9.1
+ARG CHAMBER_VERSION=2.14.1
 ARG CHAMBER_SHA256SUM=947a997374dacf6a2133688a5a6e459dd1603c63c8c92cd10b1274eaa8e4cb66
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/segmentio/chamber/releases/download/v${CHAMBER_VERSION}/chamber-v${CHAMBER_VERSION}-linux-amd64 \
