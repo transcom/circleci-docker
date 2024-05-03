@@ -14,11 +14,11 @@ RUN set -ex && cd ~ \
   && chown root:root /usr/local/bin/shellcheck \
   && rm -vrf shellcheck-v${SHELLCHECK_VERSION} shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz
 
-# install circleci cli
+# install circleci cli https://github.com/CircleCI-Public/circleci-cli/releases/tag/v0.1.30549#:~:text=circleci%2Dcli_0.1.30549_linux_amd64.tar.gz
 ARG CIRCLECI_CLI_VERSION=0.1.30549
 ARG CIRCLECI_CLI_SHA256SUM=649496a32305c539df9c66f737f74a8852dd73e53c14e7d95b77c0e2d7790d38
 RUN set -ex && cd ~ \
-  && curl -sSLO https://github.com/CircleCI-Public/circleci-cli/releases/download/v${CIRCLECI_CLI_VERSION}/circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
+  && curl -sSLO https://github.com/CircleCI-Public/circleci-cli/releases/tag/v${CIRCLECI_CLI_VERSION}#:~:text=circleci%2Dcli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && [ $(sha256sum circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz | cut -f1 -d' ') = ${CIRCLECI_CLI_SHA256SUM} ] \
   && tar xzf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && mv circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64/circleci /usr/local/bin \
