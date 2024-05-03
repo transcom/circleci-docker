@@ -11,6 +11,7 @@ function test_latest() {
   echo "Testing ${tag} Dockerfile"
 
   docker run -it "milmove/circleci-docker:${tag}" shellcheck --version
+  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" circleci version
   docker run -it "milmove/circleci-docker:${tag}" aws --version
   docker run -it "milmove/circleci-docker:${tag}" chamber version
