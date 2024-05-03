@@ -69,6 +69,7 @@ function test_milmove_infra_tf112() {
 for tag in latest milmove-app milmove-cypress milmove-infra-tf132 milmove-infra-tf112; do
   echo
   echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
+  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
 
   case ${tag} in
