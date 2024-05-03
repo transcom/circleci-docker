@@ -16,7 +16,7 @@ RUN set -ex && cd ~ \
 
 # install circleci cli https://github.com/CircleCI-Public/circleci-cli/releases/download/v0.1.30549/circleci-cli_0.1.30549_linux_amd64.tar.gz
 ARG CIRCLECI_CLI_VERSION=0.1.30549
-ARG CIRCLECI_CLI_SHA256SUM=649496a32305c539df9c66f737f74a8852dd73e53c14e7d95b77c0e2d7790d38
+ARG CIRCLECI_CLI_SHA256SUM=807c98f96a54b2d63e54a068e215eac2af9c529f59529ad6474c4d73d8caf93c
 RUN set -ex && cd ~ \
   && curl -sSLO https://github.com/CircleCI-Public/circleci-cli/releases/download/v${CIRCLECI_CLI_VERSION}/circleci-cli_{CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz \
   && [ $(sha256sum circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz | cut -f1 -d' ') = ${CIRCLECI_CLI_SHA256SUM} ] \
