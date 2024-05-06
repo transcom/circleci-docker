@@ -35,7 +35,7 @@ function test_milmove_app() {
 function test_milmove_cypress() {
   tag=milmove-cypress
   echo "Testing ${tag} Dockerfile"
-
+  
   docker run -it "milmove/circleci-docker:${tag}" yarn cypress version
 
   echo "Passed ${tag}"
@@ -44,7 +44,7 @@ function test_milmove_cypress() {
 function test_milmove_infra_tf132() {
   tag=milmove-infra-tf132
   echo "Testing ${tag} Dockerfile"
-
+  
   docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
   docker run -it "milmove/circleci-docker:${tag}" terraform --version
   docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version

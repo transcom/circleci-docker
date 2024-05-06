@@ -11,8 +11,8 @@ USER root
 ENV GOFLAGS=-p=4
 
 # install go
-ARG GO_VERSION=1.20.6
-ARG GO_SHA256SUM=b945ae2bb5db01a0fb4786afde64e6fbab50b67f6fa0eb6cfa4924f16a7ff1eb
+ARG GO_VERSION=1.22.2
+ARG GO_SHA256SUM=5901c52b7a78002aeff14a21f93e0f064f74ce1360fce51c6ee68cd471216a17
 RUN set -ex && cd ~ \
   && curl -sSLO https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && [ $(sha256sum go${GO_VERSION}.linux-amd64.tar.gz | cut -f1 -d' ') = ${GO_SHA256SUM} ] \
@@ -32,23 +32,31 @@ RUN set -ex && cd ~ \
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
+ARG SETUP_18_X_SHA256SUM="86a3bed32e7505046b574238810a2978b1d50be740ad13f18dc674b6e46af9a5"
+
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
-  && : Add Node 18.13.0 \
-  # This is so we can pin to specific Node versions
-  # See https://github.com/nodesource/distributions/issues/33#issuecomment-337767815
-  # See https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/ for list of packages
-  && curl -o nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/nodejs_18.13.0-deb-1nodesource1_amd64.deb \
-  && dpkg -i ./nodejs.deb \
-  && rm nodejs.deb \
+  && : Add Node 18.20.2 \
+  && curl -sSLO https://deb.nodesource.com/setup_18.x \
+  && echo "${SETUP_18_X_SHA256SUM} setup_18.x" | sha256sum -c - \
+  && bash setup_18.x \
+  && rm setup_18.x \
   && : Add Yarn \
-  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && curl -sSLf https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-  && apt-get -qq update \
-  && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
+  #&& : Install postgresql repo \
+  #&& sh -c 'echo "deb http://apt-archive.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg-archive main" > /etc/apt/sources.list.d/pgdg.list' \
+  #&& curl -sSLf -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \  
+  #&& apt-get -qq update \
+  #&& : Install pinned postgresql packages \
+  #&& apt-get -y install --no-install-recommends \
+  #  postgresql-client-12=12.13-1.pgdg20.04+1 \
+  #  libpq5=12.15-1.pgdg20.04+1 \
+  #  libpq-dev=12.15-1.pgdg20.04+1 \  
+  #&& : Install apt packages \
+  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client\
   && : Cleanup \
   && apt-get clean \
   && rm -vrf /var/lib/apt/lists/*
