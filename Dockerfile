@@ -24,7 +24,6 @@ RUN set -ex && cd ~ \
   && mv circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64/circleci /usr/local/bin \
   && chmod 755 /usr/local/bin/circleci \
   && chown root:root /usr/local/bin/circleci \
-  && /usr/local/bin/circleci telemetry disable \
   && rm -vrf circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64 circleci-cli_${CIRCLECI_CLI_VERSION}_linux_amd64.tar.gz
 
 # install awscliv2, disable default pager (less)
