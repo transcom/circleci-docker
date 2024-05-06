@@ -10,7 +10,6 @@ function test_latest() {
   tag=latest
   echo "Testing ${tag} Dockerfile"
 
-  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" shellcheck --version
   docker run -it "milmove/circleci-docker:${tag}" circleci version
   docker run -it "milmove/circleci-docker:${tag}" aws --version
@@ -24,7 +23,6 @@ function test_milmove_app() {
   tag=milmove-app
   echo "Testing ${tag} Dockerfile"
 
-  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" go version
   docker run -it "milmove/circleci-docker:${tag}" node --version
   docker run -it "milmove/circleci-docker:${tag}" yarn --version
@@ -38,7 +36,6 @@ function test_milmove_cypress() {
   tag=milmove-cypress
   echo "Testing ${tag} Dockerfile"
   
-  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" yarn cypress version
 
   echo "Passed ${tag}"
@@ -48,7 +45,6 @@ function test_milmove_infra_tf132() {
   tag=milmove-infra-tf132
   echo "Testing ${tag} Dockerfile"
   
-  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
   docker run -it "milmove/circleci-docker:${tag}" terraform --version
   docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
@@ -61,7 +57,6 @@ function test_milmove_infra_tf112() {
   tag=milmove-infra-tf112
   echo "Testing ${tag} Dockerfile"
 
-  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" find-guardduty-user version
   docker run -it "milmove/circleci-docker:${tag}" terraform --version
   docker run -it "milmove/circleci-docker:${tag}" terraform-docs --version
@@ -73,7 +68,6 @@ function test_milmove_infra_tf112() {
 for tag in latest milmove-app milmove-cypress milmove-infra-tf132 milmove-infra-tf112; do
   echo
   echo "* Testing USER is properly set to 'circleci' on '${tag}' tagged image"
-  docker run -it "milmove/circleci-docker:${tag}" circleci telemetry disable 
   docker run -it "milmove/circleci-docker:${tag}" bash -xc '[[ $(whoami) = circleci ]]'
 
   case ${tag} in
