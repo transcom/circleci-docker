@@ -11,8 +11,8 @@ USER root
 ENV GOFLAGS=-p=4
 
 # install go
-ARG GO_VERSION=1.22.2
-ARG GO_SHA256SUM=5901c52b7a78002aeff14a21f93e0f064f74ce1360fce51c6ee68cd471216a17
+ARG GO_VERSION=1.23.0
+ARG GO_SHA256SUM=905a297f19ead44780548933e0ff1a1b86e8327bb459e92f9c0012569f76f5e3
 RUN set -ex && cd ~ \
   && curl -sSLO https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz \
   && [ $(sha256sum go${GO_VERSION}.linux-amd64.tar.gz | cut -f1 -d' ') = ${GO_SHA256SUM} ] \
