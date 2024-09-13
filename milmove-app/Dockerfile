@@ -32,23 +32,25 @@ RUN set -ex && cd ~ \
 # apt-get project dependencies
 # Notes:
 # - When adding apt sources do it before 'apt-get update'
-ARG SETUP_18_X_SHA256SUM="86a3bed32e7505046b574238810a2978b1d50be740ad13f18dc674b6e46af9a5"
+ARG NODE_JS_VERSION="v18.20.4"
+# Pulled from https://nodejs.org/dist/v18.20.4/SHASUMS256.txt
+ARG NODE_JS_SHASUM256="c4b0827dc47609d0a8379e6de6c74b3934da0b1312c733b5ebdcac16e3f1e954"
 
 ARG CACHE_APT
 RUN set -ex && cd ~ \
   && : Remove existing node \
   && rm -rf /usr/local/bin/node /usr/local/bin/nodejs \
-  && : Add Node 18.20.2 \
-  && curl -sSLO https://deb.nodesource.com/setup_18.x \
-  && echo "${SETUP_18_X_SHA256SUM} setup_18.x" | sha256sum -c - \
-  && bash setup_18.x \
-  && rm setup_18.x \
+  && : Install LTS NodeJS v18.20.4 \
+  && curl -sSLO https://nodejs.org/dist/${NODE_JS_VERSION}/node-${NODE_JS_VERSION}-linux-x64.tar.gz \
+  && [ $(sha256sum node-${NODE_JS_VERSION}-linux-x64.tar.gz | cut -f1 -d' ') = ${NODE_JS_SHASUM256} ] \
+  && tar -C /usr/local -xzf node-${NODE_JS_VERSION}-linux-x64.tar.gz \
+  && rm -v node-${NODE_JS_VERSION}-linux-x64.tar.gz \
   && : Add Yarn \
   && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
   && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get -qq update \
   && : Install apt packages \
-  && apt-get -qq -y install --no-install-recommends nodejs yarn entr postgresql-client \
+  && apt-get -qq -y install --no-install-recommends yarn entr postgresql-client \
   && : Cleanup \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
